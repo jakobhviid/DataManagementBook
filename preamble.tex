@@ -1,0 +1,99 @@
+%!TEX root = ./book.tex
+
+% This preamble is not strictly part of the class, but it is used for the
+% documentation template.
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% SI units
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Use like this:
+% \SI{10}{\mega\watt\hour}
+% si{\watt}
+% \num{24}
+
+\RequirePackage{siunitx}
+\DeclareSIUnit\ppm{ppm}
+\DeclareSIUnit\boolean{boolean}
+\DeclareSIUnit\rpm{RPM}
+\DeclareSIUnit\btu{BTU}
+\DeclareSIUnit\dollar{\$}
+
+\DeclareSIUnit\million{million}
+\DeclareSIUnit\billion{billion}
+
+
+\sisetup{
+    detect-mode,
+    per-mode = symbol,
+    forbid-literal-units,
+    group-digits = false,
+    input-signs = {},
+    input-symbols = ()[]-+,
+    input-open-uncertainty = {},
+    input-close-uncertainty = {},
+    table-align-text-post = false
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Chemical formulas
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Use like this:
+% \ce{CO2}
+
+\RequirePackage[version=4]{mhchem}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Listings
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage[
+    chapter,
+    newfloat=true,
+]{minted}
+\usemintedstyle{tango}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Miscellaneous
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Improve lists
+\usepackage[inline]{enumitem}
+
+% Reduce space between items
+\setlist{noitemsep}
+
+% Change top-level bullet with dash
+\setlist[itemize]{
+    label={--}
+}
+
+% Change font for descriptions
+\setlist[description]{
+    font={\rmfamily\itshape\mdseries}
+}
+
+% For pretty tables
+\RequirePackage{booktabs}
+
+% For multirow cells in tables
+\RequirePackage{multirow}
+
+% For multiline cells in tables
+\RequirePackage{makecell}
+
+% For pretty quotes
+\RequirePackage{csquotes}
+
+% For printing page dimensions
+\RequirePackage{printlen}
+
+% Epigraph used in the acknowledgement
+\RequirePackage{epigraph}

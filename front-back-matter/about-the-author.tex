@@ -1,0 +1,25 @@
+%!TEX root = ../thesis.tex
+
+
+% \let\defaultchapterheadstartvskip\chapterheadstartvskip
+\renewcommand{\dropchapter}[1]{
+  \renewcommand{\chapterheadstartvskip}{\vspace{#1}}
+}
+% \renewcommand{\undodrop}[0]{
+%   \renewcommand{\chapterheadstartvskip}{\defaultchapterheadstartvskip}
+% }
+
+% create space for the quote
+\dropchapter{2.5cm}
+\addchap{About the Author}
+
+% create a nice quote
+\setlength\epigraphwidth{7cm}
+\epigraphhead[70]{%
+\epigraph{\scriptfamily Finally, from so little sleeping and so much reading, his brain dried up and he went completely out of his mind.}{\textsc{Miguel de Cervantes Saavedra, Don Quixote}}%
+}
+
+% \undodrop
+
+% Ever since I started my university educations,
+Something about Jakob Hviid, \phd. 

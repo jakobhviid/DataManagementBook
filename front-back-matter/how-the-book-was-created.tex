@@ -1,0 +1,28 @@
+%!TEX root = ../thesis.tex
+
+
+% \let\defaultchapterheadstartvskip\chapterheadstartvskip
+\renewcommand{\dropchapter}[1]{
+  \renewcommand{\chapterheadstartvskip}{\vspace{#1}}
+}
+% \renewcommand{\undodrop}[0]{
+%   \renewcommand{\chapterheadstartvskip}{\defaultchapterheadstartvskip}
+% }
+
+% create space for the quote
+\dropchapter{2.5cm}
+\addchap{How the book was created}
+
+% create a nice quote
+\setlength\epigraphwidth{7cm}
+\epigraphhead[70]{%
+\epigraph{\scriptfamily Freely we serve because we freely love, as in our will to love or not; in this we stand or fall.}{\textsc{John Milton, Paradise Lost, Book V}}%
+}
+
+% \undodrop
+
+Jakob Hviid is the main author of this book, and has written the majority of the content. The book is written in \LaTeX, and the source code is available on GitHub at \url{https://github.com/jakobhviid/DataManagementBook}. The book is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License, which means that you are free to share and adapt the book, as long as you give credit to the author, and share the book under the same license.
+
+Other people have contributed to the book, and those with major contributions are listed in the Acknowledgements section below. A full list of contributors can be found on GitHub at \url{https://github.com/jakobhviid/DataManagementBook}. 
+
+If you feel that someone is missing from the book, feel free to become one of the contributors, and submit a pull request on GitHub. If you are unfamiliar with GitHub, you can also send an email to jakob@hviid.phd. If you feel that you should be listed as a major contributor, please make this explicit in the pull request before submitting it. If your pull request is accepted, you will be listed as a major contributor in the next version of the book.

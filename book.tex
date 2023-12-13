@@ -1,0 +1,147 @@
+% chktex-file 1
+% chktex-file 8
+% chktex-file 9
+% chktex-file 10
+% chktex-file 11
+% chktex-file 13
+% chktex-file 17
+% chktex-file 18
+% chktex-file 24
+% chktex-file 44
+% chktex-file 46
+\documentclass{modernthesis}
+
+\modernthesissetup{
+    title={Data Management},
+    subtitle= {Managing Information in a Digital Era},
+    author={Jakob Hviid, PhD},
+    email={jakob@hviid.phd},
+    department={Software Engineering Section},
+    faculty={Faculty of Engineering},
+    university={University of Southern Denmark},
+    linkedin={jakobhviid},
+    orcid={0000-0001-6532-6798},
+    googlescholar={uvLuRRQAAAAJ},
+    researcherid={Q-1061-2018},
+    year=2023,
+    month=12,
+    showprinter,
+    acronyms,
+    % glossary,
+    cfivepaper,
+    separatebibliography,
+    highlightannotatedauthors,
+    highlightpubstate,
+    rotatesidewaysfloats,
+    showopenaccess,
+    BCOR=15mm,
+    version={Version 0.1 Pre-Release}
+}
+
+\input{preamble}
+
+% JAH added lines
+\usepackage{dingbat} % adds \checkmark
+\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{balance}
+\usepackage{booktabs} % For formal tables
+\usepackage[htt]{hyphenat} % hyphenation of \texttt
+\usepackage{listings}
+\usepackage{color, colortbl}
+\usepackage{amsmath}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{kantlipsum}
+% \usepackage{natbib}
+\usepackage{pdfpages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% URL Breakup for bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%
+% \usepackage[block=ragged]{biblatex}
+
+%change color of acronyms
+% \usepackage[dvipsnames]{xcolor}
+\definecolor{mytestcolor}{RGB}{156,6,6}
+\renewcommand*{\glstextformat}[1]{\textcolor{mytestcolor}{#1}}
+
+\newcommand{\rotm}[1]{\rotatebox[origin=l]{90}{#1}}
+\newminted{sparql}{xleftmargin=1em,mathescape, numbersep=5pt, frame=lines, framesep=2mm, fontsize=\scriptsize, linenos}
+\newminted{json}{xleftmargin=1em,mathescape, numbersep=5pt, frame=lines, framesep=2mm, fontsize=\scriptsize, linenos}
+
+% Put glossary definitions in glossary.tex
+\loadglsentries[main]{glossary}
+
+% Put glossary definitions in acronyms.tex
+\loadglsentries[\acronymtype]{acronyms}
+
+% Load bibliography
+\addbibresource{bibliography.bib}
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\begin{document}
+
+% ******************************* Frontpage Start ****************************
+\includepdf[pages=-]{figures/frontpage/frontpage.pdf}
+% ******************************* Frontpage End ****************************
+
+% ******************************* Front Matter Start ****************************
+\frontmatter
+
+\include{front-back-matter/title}
+\include{front-back-matter/abstract}
+\include{front-back-matter/readingguide}
+\include{front-back-matter/about-the-author}
+\include{front-back-matter/how-the-book-was-created}
+\include{front-back-matter/acknowledgments}
+\include{front-back-matter/contents}
+
+\cleardoublepage
+
+\mainmatter
+% ******************************* Front Matter End ****************************
+
+% ******************************* Parts Start ****************************
+\include{content/1-relational-databases/relational-databases-text}
+\include{content/2-nosql-databases/nosql-databases-text}
+% ******************************* Parts End ****************************
+
+
+\printbibliography[
+    segment=1,
+    heading=none,
+]
+% \printbibliography[
+%     category=coauthor,
+%     heading=none,
+% ]
+
+\iftoggle{separatebibliography}{
+A local bibliography is reported at the end of each chapter, listing all references cited in the corresponding publication.
+All references are also repeated in the global bibliography at the end of this thesis, on page~\pageref{chap:bibliography}.
+}{}
+
+\appendix
+
+\backmatter
+
+\part{Bibliography}
+\label{part:bibliography}
+
+% This \lcnamecref{part:bibliography} contains a complete reference to all literature referenced in this thesis.
+
+\addchap{References}\label{chap:bibliography}
+
+\AtNextBibliography{\restorebibmacro{pageref}}
+\printbibliography[
+    heading=none,
+    prenote=openaccess,
+]
+
+% \glsaddallunused
+
+
+\end{document}

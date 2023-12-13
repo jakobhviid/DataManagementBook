@@ -1,0 +1,43 @@
+name: Generate PDF
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches: ["main"]
+    tags: ["v*"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  DOCUMENT_NAME: Data Management Book
+  TEX_MAIN_FILE: book.tex
+  FILE_NAME: book.pdf
+  NEW_FILE_NAME: Data-Management-${{ github.ref_name }}.pdf
+
+jobs:
+  convert_via_pandoc:
+    name: Generate PDF with LaTeX
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Compile LaTeX to PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: ${{ env.TEX_MAIN_FILE }}
+          latexmk_shell_escape: true
+      - name: Rename ${{ env.FILE_NAME }} to ${{ env.NEW_FILE_NAME }}
+        run: mv ${{ env.FILE_NAME }} ${{ env.NEW_FILE_NAME }}
+      - name: Upload ${{ env.NEW_FILE_NAME }} as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.DOCUMENT_NAME }} - PDF
+          path: ${{ env.NEW_FILE_NAME }}
+      - name: Create ${{ env.DOCUMENT_NAME }} Release if semver tagged
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: ${{ env.NEW_FILE_NAME }}
+          token: ${{ secrets.GITHUB_TOKEN }}
