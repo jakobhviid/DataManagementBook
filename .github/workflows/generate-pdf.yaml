@@ -31,7 +31,7 @@ jobs:
       - name: Rename ${{ env.FILE_NAME }} to ${{ env.NEW_FILE_NAME }}
         run: mv ${{ env.FILE_NAME }} ${{ env.NEW_FILE_NAME }}
       - name: Upload ${{ env.NEW_FILE_NAME }} as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.DOCUMENT_NAME }} - PDF
           path: ${{ env.NEW_FILE_NAME }}
