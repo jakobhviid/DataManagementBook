@@ -8,7 +8,7 @@ hide circle
 '### Objects ###
 abstract "Users and Developers" as Users
 package "Database System" <<Frame>> {
-    abstract "Application Programs or Queries" as Queries
+    abstract "User Application Programs or Queries" as Queries
     
     package "DBMS Software" <<Frame>>{
         abstract "Software to Process\nQueries or Programs" as Process
@@ -27,8 +27,8 @@ AccessStoredData <--> Data
 AccessStoredData <--> Schema
 
 '### Notes ###
-note right of Users :User interacts with system
-note right of Queries : Application queries DBMS
+note right of Users : User interacts with system
+note right of Queries : User's application queries DBMS
 note right of Process : DBMS uses the Datalayer\nof the software to access\nthe physical files\nin the system
 note right of AccessStoredData : DBMS accesses the physical\nfiles with the schema definitions\nand the stored data
 note bottom of Data : The physical file that stores the\nrows of the tables in the databse
