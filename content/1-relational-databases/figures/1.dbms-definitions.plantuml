@@ -3,7 +3,7 @@
 scale 3
 hide empty methods
 hide empty fields
-'hide circle
+hide circle
 
 '### Objects ###
 abstract "Users and Developers" as Users
