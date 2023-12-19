@@ -38,13 +38,21 @@ This part of the book teaches the basics of relational databases. It will walk y
 
 \section{Getting Started}
 
+\subsection{Installing PostgreSQL}
+
+\subsection{Installing DataGrip}
+
+\subsection{Creating and Querying your first Database}
+
 
 % ******************************* Chapter: Relational Database Basics ****************************
 \chapter{Relational Database Basics}
 \label{chap:relational:relational-database-basics}
 This chapter contains the basic building blocks to get started with basic relational databases.
 
-\section{Creating your first database}
+\section{Types of Data}
+
+\section{Constraints}
 
 \section{Managing Databases}
 
@@ -145,15 +153,21 @@ This chapter contains the basic building blocks to get started with basic relati
 
 \subsection{Altering tables}
 \begin{minted}[fontsize=\footnotesize]{postgresql}
-    -- Create a table
-    CREATE TABLE account (
-        user_id SERIAL PRIMARY KEY,
-        username VARCHAR (50) UNIQUE NOT NULL,
-        password VARCHAR (50) NOT NULL,
-        email VARCHAR (355) UNIQUE NOT NULL,
-        created_on TIMESTAMP NOT NULL,
-        last_login TIMESTAMP
-    );
+    -- creating a table to alter
+    CREATE TABLE my_ table( 
+        id SERIAL PRIMARY KEY, 
+        my_attribute VARCHAR (50) UNIQUE NOT NULL
+    ) ;
+    
+    -- Adding a column
+    ALTER TABLE my_table ADD COLUMN my_new_coulmn TIMESTAMP;
+    
+    -- Changing type of a column
+    ALTER TABLE my_table ALTER COLUMN my_new_coulmn TYPE varchar (50);
+
+    -- Delete a column
+    ALTER TABLE my_table DROP COLUMN my_new_coulmn;
+
 \end{minted}
 
 \subsection{Deleting tables}
@@ -171,9 +185,15 @@ This chapter contains the basic building blocks to get started with basic relati
 
 \section{Managing Data in Tables}
 
-\section{Types of Data}
+\subsection{Inserting Data}
 
-\section{Joins and querying related tables}
+\subsection{Deleting Data}
+
+\subsection{Updating Data}
+
+\subsection{Querying Data}
+
+\section{Joins and Querying Related Tables}
 
 % ******************************* Chapter: ER, EER Modeling and Database Design ****************************
 \chapter{ER, EER Modeling and Database Design}
