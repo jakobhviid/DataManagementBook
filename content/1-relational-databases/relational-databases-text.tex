@@ -41,7 +41,7 @@ The term "database" represents a general concept of data storage and management,
 \section{Why use a relational database?}
 First of, relational databases tend to be the default choice of database, unless specific other requirements or circumstances exist. This is because relational databases are the most mature, and most widely used database type. This means that there is a lot of support for relational databases, and a lot of people know how to work with them. It is easy to find people to work with relational databases, and that there is a lot of documentation and support available.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=1\textwidth]{content/1-relational-databases/figures/i1-databases-everywhere.png}
     \caption{A system of databases and services}
@@ -83,7 +83,7 @@ One of SQL's greatest strengths is its widespread adoption and standardization. 
 \section{What is PostgreSQL?}
 PostgreSQL, often simply called Postgres, is an advanced, open-source relational database management system (RDBMS) that stands out in the vast landscape of relational databases. It's renowned for its robustness, scalability, and alignment with SQL standards. Understanding PostgreSQL in the context of relational databases involves appreciating its unique features and the reasons behind its popularity.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{content/1-relational-databases/figures/PostgreSQL_logo.3colors.540x557.png}
     \caption{PostgreSQL Logo}
@@ -111,40 +111,70 @@ Understanding the realm of database systems requires familiarity with several co
 \subsection{Overall Database Terms}
 The terms one needs to understand, and how they relate to each other, are shown in \cref{fig:1.dbms-definitions.png}.
 
-\begin{figure}[h]
+
+\begin{enumerate}
+    \item \textbf{Database Systems:} A Database System is an integrated set of software tools that allows users to store, modify, and extract information from a database. It encompasses the DBMS software, the database itself (which includes the schema definitions and stored data), and the user application programs or queries.
+    \item \textbf{User Application Programs or Queries:} User Application Programs or Queries refer to the software and commands that interact with the database system. These can range from simple query commands in SQL to complex programs written in programming languages like Python, Java, or C\#, designed to manipulate or retrieve data from the database.
+    \item \textbf{DBMS Software:} DBMS Software, or Database Management System Software, is the core component of a database system. It acts as an intermediary between the user and the database. The DBMS manages the stored data, ensuring its integrity, security, and consistency. It also handles tasks such as data retrieval, update, and administration.
+    \item \textbf{Schema Definitions:} Schema Definitions in a database system represent the logical structure of the entire database. They define how data is organized and how the relationships among different data elements are established. The schema includes definitions for tables, columns, data types, constraints, and relationships. It's like a blueprint for the database, dictating its organization and how the data within it is related.
+    \item \textbf{Stored Data:} Stored Data is the actual data that resides in the database. This is the collection of information that has been stored in accordance with the schema definitions. Stored data can include various types of data, such as textual data, numerical data, dates, or binary data, depending on the nature of the database and its schema.
+\end{enumerate}
+
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=1\textwidth]{content/1-relational-databases/figures/1.dbms-definitions.png}
     \caption{High Level Explanation of a Database Management System}
     \label{fig:1.dbms-definitions.png}
 \end{figure}
 
-\begin{enumerate}
-    \item \textbf{Database Systems:} A Database System is an integrated set of software tools that allows users to store, modify, and extract information from a database. It encompasses the DBMS software, the database itself (which includes the schema definitions and stored data), and the user application programs or queries.
-    \item \textbf{User Application Programs or Queries:} User Application Programs or Queries refer to the software and commands that interact with the database system. These can range from simple query commands in SQL to complex programs written in programming languages like Python, Java, or C#, designed to manipulate or retrieve data from the database.
-    \item \textbf{DBMS Software:} DBMS Software, or Database Management System Software, is the core component of a database system. It acts as an intermediary between the user and the database. The DBMS manages the stored data, ensuring its integrity, security, and consistency. It also handles tasks such as data retrieval, update, and administration.
-    \item \textbf{Schema Definitions:} Schema Definitions in a database system represent the logical structure of the entire database. They define how data is organized and how the relationships among different data elements are established. The schema includes definitions for tables, columns, data types, constraints, and relationships. It's like a blueprint for the database, dictating its organization and how the data within it is related.
-    \item \textbf{Stored Data:} Stored Data is the actual data that resides in the database. This is the collection of information that has been stored in accordance with the schema definitions. Stored data can include various types of data, such as textual data, numerical data, dates, or binary data, depending on the nature of the database and its schema.
-\end{enumerate}
-
-
-The relationship among these components is hierarchical and interdependent:
-
-- At the base, we have the \textbf{Stored Data}, which is the essence of the database.
-- This data is structured and organized according to the \textbf{Schema Definitions}.
-- The \textbf{DBMS Software} serves as the mediator between the stored data and the end-users. It uses the schema definitions to ensure data is correctly stored and retrieved.
-- \textbf{User Application Programs or Queries} interact with the DBMS software to perform operations on the data — whether it's querying for specific information, updating records, or performing analyses.
-- All these components together constitute the \textbf{Database System}, which is the overall environment enabling data management and utilization.
+The relationship among these components is hierarchical and interdependent. At the base, we have the \textbf{Stored Data}, which is the essence of the database. This data is structured and organized according to the \textbf{Schema Definitions}. The \textbf{DBMS Software} serves as the mediator between the stored data and the end-users. It uses the schema definitions to ensure data is correctly stored and retrieved. \textbf{User Application Programs or Queries} interact with the DBMS software to perform operations on the data — whether it's querying for specific information, updating records, or performing analyses. All these components together constitute the \textbf{Database System}, which is the overall environment enabling data management and utilization.
 
 \subsection{The anatomy of a table}
+As can be seen in \cref{fig:2.table-definitions.png}, a table is structured through a series of rows and columns that intersect to form cells. Each column in the table is headed by an attribute, which is also commonly referred to as a field, column, or property. These attributes represent the data categories within the table, defining the kind of data each column holds. Similarly, each row in the table is known as a tuple, which can alternatively be called a row, record or an entry. Tuples are instances of the data, encompassing a unique set of values for the attributes defined by the columns. Together, attributes and tuples constitute the fundamental framework of a table.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{content/1-relational-databases/figures/2.table-definitions.png}
+    \includegraphics[width=1\textwidth]{content/1-relational-databases/figures/2.table-definitions.png}
     \caption{Table Terminology (Artist: Chris Martin)}
     \label{fig:2.table-definitions.png}
 \end{figure}
 
-\section{Getting Started}
+\section{Setting up your machine}
+Before you can start working with databases, you need to set up your machine. This section will guide you through the process of setting up your machine, and installing the required software.
+
+\subsubsection*{Windows Specific Instructions}
+Go to https://www.enterprisedb.com/downloads/postgres-postgresql-downloads and download the latest version of PostgreSQL. 
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=1\textwidth]{content/1-relational-databases/figures/1.install-for-windows-1.png}
+    \caption{Download location for PostgreSQL}
+    \label{fig:1.postgresql-download-1.png}
+\end{figure}
+
+Run the installer, and follow the instructions, but be sure to deselect "Stack Builder" (see \cref{fig:1.postgresql-download-2.png}), as we will not be using it in this book. 
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.6\textwidth]{content/1-relational-databases/figures/1.install-for-windows-2.png}
+    \caption{Components to install}
+    \label{fig:1.postgresql-download-2.png}
+\end{figure}
+
+When asked for a password, use the password you want to use for the postgres user. This is the user that is used to manage the database server. Be sure to remember this password, as you will need it later. After this password it set, the database server instance will have the user postgres, and the password will be what you set. Beware that your computers password, the database server instance password, and the pgAdmin password are all different passwords.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.7\textwidth]{content/1-relational-databases/figures/1.install-for-windows-3.png}
+    \caption{Pick a password for the postgres user}}
+    \label{fig:1.postgresql-download-2.png}
+\end{figure}
+
+
+This is not the password you will use to connect to the database server, but the password you will use to manage the database server. This password is not used in this book, but it is good practice to set it to something you can remember.
+
+\subsubsection*{Mac Specific Instructions}
+\subsubsection*{Linux Specific Instructions}
+
 
 
 % ******************************* Chapter: Relational Database Basics ****************************
