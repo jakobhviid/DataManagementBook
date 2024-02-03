@@ -184,6 +184,7 @@ Or copy it directly from the frontpage of the homebrew website. After homebrew i
 
 \begin{minted}[fontsize=\footnotesize]{bash}
     brew install postgresql
+    /opt/homebrew/bin/createuser -s postgres
 \end{minted}
 
 After PostgreSQL is installed, you can start the server by running the following command in the terminal:
@@ -204,10 +205,23 @@ And if you only want to start the server once, you can run the following command
     brew services run postgresql
 \end{minted}
 
+
+PostgreSQL will not have a password set at this point, and a password needs to be set using the comandline. It can be set by running the following command in the terminal:
+
+\begin{minted}[fontsize=\footnotesize]{bash}
+    psql postgres
+    \password postgres
+\end{minted}
+
+Running the above code will prompt you to write a password for the postgres user. Remember this password, as you will need it every time you connect to the database server instance. 
+
+
 Remember to also install pgAdmin using homebrew, by running the following command in the terminal:
 \begin{minted}[fontsize=\footnotesize]{bash}
     brew install pgadmin4
 \end{minted}
+
+At the first run of pgadmin a password needs to be set. Remember it, as you need it every time you used pgadmin. Be aware that this password is not the same as the password for the database server instance, and the password for the postgres user.
 
 
 \subsubsection*{Linux Specific Instructions}
@@ -229,24 +243,122 @@ This will start the PostgreSQL server, and it will start automatically every tim
     sudo systemctl stop postgresql
 \end{minted}
 
+PostgreSQL will not have a password set at this point, and a password needs to be set using the comandline. It can be set by running the following command in the terminal:
+
+\begin{minted}[fontsize=\footnotesize]{bash}
+    psql postgres
+    \password postgres
+\end{minted}
+
+Running the above code will prompt you to write a password for the postgres user. Remember this password, as you will need it every time you connect to the database server instance. 
+
 Remember to install pgAdmin too. This can be done using the package manager of your distribution. With Ubuntu, you can run the following command in the terminal:
 
 \begin{minted}[fontsize=\footnotesize]{bash}
     sudo apt-get install pgadmin4
 \end{minted}
 
+At the first run of pgadmin a password needs to be set. Remember it, as you need it every time you used pgadmin. Be aware that this password is not the same as the password for the database server instance, and the password for the postgres user.
+
+\section{Connecting to the database with pgAdmin}
+When you have installed PostgreSQL, you can connect to the database using pgAdmin. pgAdmin is a graphical user interface that allows you to interact with the database. It is a powerful tool that allows you to create, manage, and query databases. This section will guide you through the process of connecting to the database using pgAdmin.
+
+First start the application in your respective operating system. The application will look like \cref{fig:1.pgadmin1}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{content/1-relational-databases/figures/pgadmin/1.png}
+    \caption{Starting pgAdmin}
+    \label{fig:1.pgadmin1}
+\end{figure}
+
+Next, you need to register a server. This is done by right clicking on the "Servers" node in the tree view, and selecting "Create" and then "Server...". This will open a dialog where you can fill in the connection information. The dialog will look like \cref{fig:1.pgadmin2}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{content/1-relational-databases/figures/pgadmin/2.png}
+    \caption{Initiate registration of a server}
+    \label{fig:1.pgadmin2}
+\end{figure}
+
+
+% The dialog will look like \cref{fig:1.pgadmin3}.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{content/1-relational-databases/figures/pgadmin/3.png}
+%     \caption{Pick a name, i recommend localhost}
+%     \label{fig:1.pgadmin3}
+% \end{figure}
+
+Pick a name for the server, and click save. I recommend localhost, as it is the default name, and as it refers to your local computer. This is convention for development machines. 
+Move to the tab "Connection", and fill in the connection information. The hostname is localhost, the username is postgres, and the password is the password you set for the postgres user. The dialog will look like \cref{fig:1.pgadmin4}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{content/1-relational-databases/figures/pgadmin/4.png}
+    \caption{Fill in connection information, hostname is localhost, username is postgres, and the password is the password you set for the postgres user}
+    \label{fig:1.pgadmin4}
+\end{figure}
+
+% If you have filled in the information correctly, you will see a success message like \cref{fig:1.pgadmin5}. If you see this message, you have successfully connected to the database server instance.
+
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=0.7\textwidth]{content/1-relational-databases/figures/pgadmin/5.png}
+%     \caption{Success looks like this!}
+%     \label{fig:1.pgadmin5}
+% \end{figure}
+You should now be connected to the database and see it in the right pane.
+Now you can create a new database. This is done by right clicking on the "Databases" node in the tree view, and selecting "Create" and then "Database...". This will open a dialog where you can fill in the database information. The dialog will look like \cref{fig:1.pgadmin6}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{content/1-relational-databases/figures/pgadmin/6.png}
+    \caption{Creating a new database from pgAdmin}
+    \label{fig:1.pgadmin6}
+\end{figure}
+
+Pick a name for the database, and click save. The dialog will look like \cref{fig:1.pgadmin7}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{content/1-relational-databases/figures/pgadmin/7.png}
+    \caption{Pick a database name, and click save}
+    \label{fig:1.pgadmin7}
+\end{figure}
+
+Now you have created a database, and you can start working with it. You can start by creating tables, and inserting data into the tables. This is done by right clicking on the database, and selecting "Query Tool". This will open a dialog where you can write your code, and execute it. The dialog will look like \cref{fig:1.pgadmin8}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{content/1-relational-databases/figures/pgadmin/8.png}
+    \caption{Mark the database, and press the query tool}
+    \label{fig:1.pgadmin8}
+\end{figure}
+
+Write your code, and execute it. The dialog will look like \cref{fig:1.pgadmin9}. You are now ready for coding.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{content/1-relational-databases/figures/pgadmin/9.png}
+    \caption{Write your code, and execute it}
+    \label{fig:1.pgadmin9}
+\end{figure}
+
+Now that your machine is ready, and you have connected to the database, you are ready to start working with databases. The next chapter will guide you through the process of creating a database, and managing tables, as well as how to query the database.
 
 
 % ******************************* Chapter: Relational Database Basics ****************************
 \chapter{Relational Database Basics}
 \label{chap:relational:relational-database-basics}
 This chapter contains the basic building blocks to get started with basic relational databases.
+It will explain the basic concepts of databases, and how to create, manage, and query a database.
 
 \section{Creating your first database}
+Creating a database is the first step in working with databases. This section will guide you through the process of creating a database. 
 
-\section{Managing Databases}
+The following codesnippet shows the available syntax for the create database operation. The syntax is the same for all database management systems, but the options available might differ. The options available in PostgreSQL are shown in the example.
 
-\subsection{Creating a database}
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Creating a database with full syntax
     CREATE DATABASE database_name
@@ -262,10 +374,16 @@ This chapter contains the basic building blocks to get started with basic relati
         [IS_TEMPLATE = true | false ]
 \end{minted}
 
+The key element to understand here is that the name of the CREATE DATABASE statement and a database name of your choosing is mandatory, the WITH clause and everything after it is optional. If no parameters are set, the database will be created with default settings. Therefore, the simplest way to create a database is to run the following command:
+
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Creating an ACME database with minimal syntax
     CREATE DATABASE Acme;
 \end{minted}
+
+Note that both examples you have seen until now, are also using comments. A double dash "--" creates a one-line comment, and a slash-star "/*" creates a multi-line comment. Comments are not executed, and are only there to help you understand the code. It does, however, make the code more readable and understandable, and is therefore a good practice to use comments.
+
+If you wish to create a database with specific settings, you can use the WITH clause. The following example shows how to create a database with specific settings:
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Creating a ACME database with enabled options
@@ -276,32 +394,31 @@ This chapter contains the basic building blocks to get started with basic relati
         IS_TEMPLATE = false;
 \end{minted}
 
-\subsection{Altering a database}
+\subsection{Altering and deleting databases}
+If you wish an already existing database settings can be altered. The following example shows how to alter a database, and disable index scans (which is not recommended):
+
 \begin{minted}[fontsize=\footnotesize]{postgresql}
-    -- Create a table
-    CREATE TABLE tableName (
-        tableName_id SERIAL PRIMARY KEY, -- auto incrementing id
-        username VARCHAR (50) UNIQUE NOT NULL, -- unique username
-        password VARCHAR (250) NOT NULL -- never store in plain text
-    );
+    -- Alter Database Acme to disable index scans
+    ALTER DATABASE Acme SET enable_indexscan TO off;
 \end{minted}
 
-\subsection{Deleting a database}
+The last missing component is how to delete a database. The following example shows how to delete a database. Beware that this is a permanent operation, and that all data in the database will be lost with no way to recover the data!
+
 \begin{minted}[fontsize=\footnotesize]{postgresql}
-    -- Create a table
-    CREATE TABLE tableName (
-        tableName_id SERIAL PRIMARY KEY, -- auto incrementing id
-        username VARCHAR (50) UNIQUE NOT NULL, -- unique username
-        password VARCHAR (250) NOT NULL -- never store in plain text
-    );
+    -- Delete a table
+    DROP DATABASE Acme;
 \end{minted}
 
 \subsection{Switch databases}
+It is also possible to switch between databases within the same script on most database management systems. Inside the script, one can freely change databases and run queries on different databases. The following example shows how to switch databases in in Microsoft SQL:
+
 \begin{minted}[fontsize=\footnotesize]{sql}
     /* Change to database_name
      * This does not work with PostgreSQL */
     USE database_name;
 \end{minted}
+
+However, this does not work with PostgreSQL. PostgreSQL is implemented differently, and requires that you actively with your graphical user interface, or with the command line, switch to the database you want to work with. The following example shows how to switch databases in PostgreSQL from the command line using psql:
 
 \begin{minted}[fontsize=\footnotesize]{psql}
     -- Change to database_name from psql command line
@@ -310,6 +427,7 @@ This chapter contains the basic building blocks to get started with basic relati
 
 
 \section{Managing Tables}
+For the first database to actually hold any data, it needs to have tables. This section will guide you through the process of creating, altering, and deleting tables.
 
 \subsection{Creating tables}
 \begin{minted}[fontsize=\footnotesize]{postgresql}
