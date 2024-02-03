@@ -1,4 +1,4 @@
-%!TEX root = ../book.tex
+%!TEX root = ../../book.tex
 
 % ******************************* Part: Relational Databases ****************************
 
@@ -165,15 +165,75 @@ When asked for a password, use the password you want to use for the postgres use
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.7\textwidth]{content/1-relational-databases/figures/1.install-for-windows-3.png}
-    \caption{Pick a password for the postgres user}}
-    \label{fig:1.postgresql-download-2.png}
+    \caption{Pick a password for the postgres user}
+    \label{fig:1.postgresql-download-3.png}
 \end{figure}
 
 
 This is not the password you will use to connect to the database server, but the password you will use to manage the database server. This password is not used in this book, but it is good practice to set it to something you can remember.
 
 \subsubsection*{Mac Specific Instructions}
+Installation of PostgreSQL on a Mac is done through the terminal. You can pick any way to do this, but we are going to use the homebrew (https://brew.sh) solution. Open the terminal, and run the following command to install homebrew: 
+
+\begin{minted}[fontsize=\footnotesize]{bash}
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com
+        /Homebrew/install/HEAD/install.sh)"
+\end{minted}
+
+Or copy it directly from the frontpage of the homebrew website. After homebrew is installed, you can install PostgreSQL by running the following command in the terminal:
+
+\begin{minted}[fontsize=\footnotesize]{bash}
+    brew install postgresql
+\end{minted}
+
+After PostgreSQL is installed, you can start the server by running the following command in the terminal:
+
+\begin{minted}[fontsize=\footnotesize]{bash}
+    brew services start postgresql
+\end{minted}
+
+This will start the PostgreSQL server, and it will start automatically every time you start your computer. If you want to stop the server, you can run the following command in the terminal:
+
+\begin{minted}[fontsize=\footnotesize]{bash}
+    brew services stop postgresql
+\end{minted}
+
+And if you only want to start the server once, you can run the following command in the terminal:
+
+\begin{minted}[fontsize=\footnotesize]{bash}
+    brew services run postgresql
+\end{minted}
+
+Remember to also install pgAdmin using homebrew, by running the following command in the terminal:
+\begin{minted}[fontsize=\footnotesize]{bash}
+    brew install pgadmin4
+\end{minted}
+
+
 \subsubsection*{Linux Specific Instructions}
+With linux, you are mostly on your own, but generally, most linux distributions have a package manager that you can use to install PostgreSQL. The package manager is different from distribution to distribution, but the most common ones are apt, yum, and dnf. To install PostgreSQL on Ubuntu, you can run the following command in the terminal:
+
+\begin{minted}[fontsize=\footnotesize]{bash}
+    sudo apt-get install postgresql
+\end{minted}
+
+After PostgreSQL is installed, you can start the server by running the following command in the terminal:
+
+\begin{minted}[fontsize=\footnotesize]{bash}
+    sudo systemctl start postgresql
+\end{minted}
+
+This will start the PostgreSQL server, and it will start automatically every time you start your computer. If you want to stop the server, you can run the following command in the terminal:
+
+\begin{minted}[fontsize=\footnotesize]{bash}
+    sudo systemctl stop postgresql
+\end{minted}
+
+Remember to install pgAdmin too. This can be done using the package manager of your distribution. With Ubuntu, you can run the following command in the terminal:
+
+\begin{minted}[fontsize=\footnotesize]{bash}
+    sudo apt-get install pgadmin4
+\end{minted}
 
 
 
