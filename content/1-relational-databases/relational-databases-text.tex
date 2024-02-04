@@ -129,6 +129,25 @@ The terms one needs to understand, and how they relate to each other, are shown 
 
 The relationship among these components is hierarchical and interdependent. At the base, we have the \textbf{Stored Data}, which is the essence of the database. This data is structured and organized according to the \textbf{Schema Definitions}. The \textbf{DBMS Software} serves as the mediator between the stored data and the end-users. It uses the schema definitions to ensure data is correctly stored and retrieved. \textbf{User Application Programs or Queries} interact with the DBMS software to perform operations on the data — whether it's querying for specific information, updating records, or performing analyses. All these components together constitute the \textbf{Database System}, which is the overall environment enabling data management and utilization.
 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{content/1-relational-databases/figures/1.DatabaseAndTerminologyMap.drawio.png}
+    \caption{Terminology extended as databases became more complex}
+    \label{fig:1.dbms-content-anatomy.png}
+\end{figure}
+
+As databases became more complex, the terminology also became more complex. The terms one needs to understand, and how they relate to each other, are shown in \cref{fig:1.dbms-content-anatomy.png}. A computer, also called a server if its only purpose is to host services for other machines, can have multiple installed DBMS' of a single type. Each installation is separate, and has its own users, and listens to its own port for connections. These separatly installed DBMS' are called instances, and are typically created when a company or customer needs full rights to the DBMS system to create new users and more. Each instance of the DBMS is able to hold multiple databases. Databases can have its own users, and are normally the first tool to reach for when separating access to data, where creating new instances should only be done if separate databases does not satisfy the requirements of the system implementor. Each of theses databases, can in turn, hold multiple tables. Each table can hold multiple rows, and each row can hold multiple columns. Each column can hold multiple cells, and each cell can hold a single value.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{content/1-relational-databases/figures/1.DatabasesAndConnecting.drawio.png}
+    \caption{How do we connect to the database?}
+    \label{fig:1.dbms-connection-explained.png}
+\end{figure}
+
+To connect to the database we want, an application would need to either connect to an instance on the localhost, or an instance on another server. in \cref{fig:1.dbms-connection-explained.png}, we explore how this works. The green arrow would be connecting to a DBMS server within the same physical machine, also often called localhost. It tends to be called localhost, as localhost will always resolve to 127.0.0.1, which is the loopback, that is always the computer you are on. The application will need to create a connection string, and this string contains the IP (in this case localhost), the user, the password, and the name of the database the application wishes to connect to. When following the yellow arrow though, we are trying to connect to a different computer to get our data. For this, we need the same information as before, but the application now needs the IP from the remote server in the connection string. Once that detail is changed, the connection can now commence, but the connection will be slower, as the data needs to traverse the network. An application will need multiple connection strings and connections over the network if it wants data from multiple databases, or from multiple instances.
+
 \subsection{The anatomy of a table}
 As can be seen in \cref{fig:2.table-definitions.png}, a table is structured through a series of rows and columns that intersect to form cells. Each column in the table is headed by an attribute, which is also commonly referred to as a field, column, or property. These attributes represent the data categories within the table, defining the kind of data each column holds. Similarly, each row in the table is known as a tuple, which can alternatively be called a row, record or an entry. Tuples are instances of the data, encompassing a unique set of values for the attributes defined by the columns. Together, attributes and tuples constitute the fundamental framework of a table.
 
@@ -142,7 +161,7 @@ As can be seen in \cref{fig:2.table-definitions.png}, a table is structured thro
 \section{Setting up your machine}
 Before you can start working with databases, you need to set up your machine. This section will guide you through the process of setting up your machine, and installing the required software.
 
-\subsubsection*{Windows Specific Instructions}
+\subsection{Windows Specific Instructions}
 Go to https://www.enterprisedb.com/downloads/postgres-postgresql-downloads and download the latest version of PostgreSQL. 
 \begin{figure}[htb]
     \centering
@@ -172,7 +191,7 @@ When asked for a password, use the password you want to use for the postgres use
 
 This is not the password you will use to connect to the database server, but the password you will use to manage the database server. This password is not used in this book, but it is good practice to set it to something you can remember.
 
-\subsubsection*{Mac Specific Instructions}
+\subsection{Mac Specific Instructions}
 Installation of PostgreSQL on a Mac is done through the terminal. You can pick any way to do this, but we are going to use the homebrew (https://brew.sh) solution. Open the terminal, and run the following command to install homebrew: 
 
 \begin{minted}[fontsize=\footnotesize]{bash}
@@ -224,7 +243,7 @@ Remember to also install pgAdmin using homebrew, by running the following comman
 At the first run of pgadmin a password needs to be set. Remember it, as you need it every time you used pgadmin. Be aware that this password is not the same as the password for the database server instance, and the password for the postgres user.
 
 
-\subsubsection*{Linux Specific Instructions}
+\subsection{Linux Specific Instructions}
 With linux, you are mostly on your own, but generally, most linux distributions have a package manager that you can use to install PostgreSQL. The package manager is different from distribution to distribution, but the most common ones are apt, yum, and dnf. To install PostgreSQL on Ubuntu, you can run the following command in the terminal:
 
 \begin{minted}[fontsize=\footnotesize]{bash}
@@ -251,7 +270,6 @@ PostgreSQL will not have a password set at this point, and a password needs to b
 \end{minted}
 
 Running the above code will prompt you to write a password for the postgres user. Remember this password, as you will need it every time you connect to the database server instance. 
-
 Remember to install pgAdmin too. This can be done using the package manager of your distribution. With Ubuntu, you can run the following command in the terminal:
 
 \begin{minted}[fontsize=\footnotesize]{bash}
@@ -425,9 +443,81 @@ However, this does not work with PostgreSQL. PostgreSQL is implemented different
     \connect database_name
 \end{minted}
 
+\section{Datatypes in Databases}
+When creating a table, you need to specify the data type for each column. Therefore, this section clarifies what datatypes are, and how they should be used, as well as some best practices. The data type specifies what type of data the column can hold. While databases support different datatypes, there are several common types that works between DBMS implementations. Table \ref{tab:1.postgresql-datatypes} shows the most commonly used data types in PostgreSQL.
 
-\section{Managing Tables}
-For the first database to actually hold any data, it needs to have tables. This section will guide you through the process of creating, altering, and deleting tables.
+\begin{table}[htb]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Data Type} & \textbf{Description} \\ \hline
+    \textbf{BOOLEAN} & Logical Boolean (true/false) \\ \hline
+    \textbf{CHAR(n)} & Fixed-length character string \\ \hline
+    \textbf{VARCHAR(n)} & Variable-length character string \\ \hline
+    \textbf{TEXT} & Variable-length character string \\ \hline
+    \textbf{INTEGER} & Signed integer (4 bytes) \\ \hline
+    \textbf{BIGINT} & Signed integer (8 bytes) \\ \hline
+    \textbf{DECIMAL(precision, scale)} & Exact numeric of selectable precision \\ \hline
+    \textbf{NUMERIC(precision, scale)} & Exact numeric of selectable precision \\ \hline
+    \textbf{REAL} & Single precision floating-point number (4 bytes) \\ \hline
+    \textbf{DOUBLE PRECISION} & Double precision floating-point number (8 bytes) \\ \hline
+    \textbf{DATE} & Calendar date (year, month, day) \\ \hline
+    \textbf{TIME} & Time of day (hour, minute, second) \\ \hline
+    \textbf{TIMESTAMP} & Date and time (no time zone) \\ \hline
+    \textbf{TIMESTAMPTZ} & Date and time (with time zone) \\ \hline
+    \textbf{INTERVAL} & Time interval \\ \hline
+    \textbf{UUID} & Universally unique identifier \\ \hline
+    \textbf{XML} & XML data \\ \hline
+    \textbf{JSON} & JSON data \\ \hline
+    \textbf{ARRAY} & Array of any data type \\ \hline
+    \end{tabular}%
+    }
+    \caption{Commonly used data types in PostgreSQL}
+    \label{tab:1.postgresql-datatypes}
+\end{table}
+
+The datatypes are just some of the available types, and i recommend you read up on the documentation for the database management system you are using. The documentation will show you all the available datatypes, and how to use them.
+You should get familiar with a few of the datatypes as they will be used the most often, and it is important you understand how they are used, and how they differ from each other. Examples of these datatypes are mainly within three areas: text, numbers, and dates.
+
+Within the text area, you have the CHAR(n), VARCHAR(n), and TEXT datatypes. The CHAR(n) datatype is a fixed-length character string, and the VARCHAR(n) datatype is a variable-length character string. The TEXT datatype is a variable-length character string, and is used for large amounts of text. The difference between CHAR(n) and VARCHAR(n) is that CHAR(n) will always be n characters long, and will be padded with spaces if the text is shorter than n characters. VARCHAR(n) will only be as long as the text, and will not be padded with spaces. The TEXT datatype is used for large amounts of text, and is the most flexible of the three. However, my recommendation when learning databases is to use the VARCHAR(n) datatype, as it is flexible, and supports most scenarios. So for now, think of text as VARCHAR(n). Once you understand databases better, you will understand when to use the other datatypes.
+
+The next datatype area to get familiar with is the numbers area. The INTEGER and BIGINT datatypes are used for whole numbers, and the DECIMAL(precision, scale) and NUMERIC(precision, scale) datatypes are used for decimal numbers. The difference between INTEGER and BIGINT is the size of the number they can hold. INTEGER can hold numbers from -2147483648 to 2147483647, and BIGINT can hold numbers from -9223372036854775808 to 9223372036854775807. The DECIMAL(precision, scale) and NUMERIC(precision, scale) datatypes are used for decimal numbers, and the difference between them is that DECIMAL is the same as NUMERIC, but the implementation can differ between database management systems. The precision is the total number of digits, and the scale is the number of digits to the right of the decimal point. So DECIMAL(5,2) can hold numbers from -999.99 to 999.99. My recommendation is to use INTEGER for whole numbers, and DECIMAL(precision, scale) for decimal numbers, and leave other options for for when those does not satisfy the requirements.
+
+Lastly, the dates area is the last area to get familiar with. The DATE datatype is used for calendar dates (does not contain the concept of hours, minutes and seconds), and the TIME datatype is used for time of day (does not contain the concept of a date). The TIMESTAMP datatype is used for date and time, so it combines the two previous concepts, and the TIMESTAMPTZ datatype is used for date and time with time zone. The INTERVAL datatype is used to quantify the time between two dates or timestamps. My recommendation is to use the TIMESTAMP datatype for date and time, and the DATE datatype for calendar dates. The other datatypes are used for specific scenarios, and should be used when those scenarios are present.
+
+\section{Constraints}
+Another important concept to understand when working with databases is constraints. Without constraints it is impossible to make large scale consistent databases. Constraints are used to enforce rules on the data in the database. This section will guide you through the types of constraints that will be used in later sections. The available types of constrains are shown in \cref{tab:1.postgresql-constraints}. We are going to touch upon four of the above constraint types. Primary Keys, Foreign Keys, Unique, and Not Null. With Primary Keys, we are also going to touch upon the concept of composite keys.
+
+\begin{table}[htb]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Constraint} & \textbf{Description} \\ \hline
+    \textbf{NOT NULL} & Ensures that a column cannot have a NULL value \\ \hline
+    \textbf{UNIQUE} & Ensures that all values in a column are different \\ \hline
+    \textbf{PRIMARY KEY} & \makecell[l]{A combination of a NOT NULL and UNIQUE. \\Uniquely identifies each row in a table} \\ \hline
+    \textbf{FOREIGN KEY} & Uniquely identifies a row/record in another table \\ \hline
+    \textbf{CHECK} & Ensures that all values in a column satisfies a specific condition \\ \hline
+    \textbf{EXCLUSION} & \makecell[l]{Ensures that if any two rows are compared on the \\ specified column or expression using the specified operator, \\at least one of the comparisons will return FALSE or NULL} \\ \hline
+    \end{tabular}%
+    }
+    \caption{Commonly used constraints in PostgreSQL}
+    \label{tab:1.postgresql-constraints}
+\end{table}
+
+\begin{itemize}
+    \item \textbf{Primary Key:} A primary key is a field in a table which uniquely identifies each row/record in that table. It is a unique identifier for the rows in the table. A primary key cannot contain NULL values, and there can only be one primary key in a table. A primary key can be made up of one or more columns. When a primary key is made up of more than one column, it is called a composite key. Make sure your table \textbf{always} has a primary key, as it is the most important constraint in a table. With a primary key, you will often see a datatype of SERIAL, which is a special datatype that is used to auto increment the value of the column.
+    \item \textbf{Foreign Key:} A foreign key is a field in a table that is a primary key in another table. It can be used to link two tables together. A foreign key can contain NULL values, unless otherwise specified, and there can be multiple foreign keys in a table. A foreign key is used to ensure that the value in the foreign key column exists in the primary key column in the other table. This is used to enforce referential integrity, and is used to link two tables together.
+    \item \textbf{Unique:} A unique constraint is used to ensure that all values in a column are different. It is used to enforce the uniqueness of the values in a column, and is commonly used in conjunction with fields that contain an email address, or a username, to make sure that user does not exist multiple times, but of cause finds it use in other scenarios as well.
+    \item \textbf{Not Null:} A not null constraint is used to ensure that a column cannot have a NULL value. What is a null value? A null value is a value that is not known, not available, or does not exist. It is different from a zero value or a field that contains spaces. A null value is used to represent a missing value, and is used to represent the absence of a value.
+\end{itemize}
+
+Now that you have a basic understanding of constraints, you are ready to start creating tables. The next section will guide you through the process of creating a table, and how to use the constraints you have learned about.
+
+\section{Working with Tables}
+Now that you have a basic understanding of databases, and how to create a database, datatypes and constraints that you will encounter in this section, you are ready to start creating tables. This section will guide you through the process of creating a table, and how to use the constraints you have learned about.
 
 \subsection{Creating tables}
 \begin{minted}[fontsize=\footnotesize]{postgresql}
