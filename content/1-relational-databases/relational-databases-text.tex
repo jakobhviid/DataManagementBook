@@ -162,7 +162,7 @@ As can be seen in \cref{fig:2.table-definitions.png}, a table is structured thro
 Before you can start working with databases, you need to set up your machine. This section will guide you through the process of setting up your machine, and installing the required software.
 
 \subsection{Windows Specific Instructions}
-Go to https://www.enterprisedb.com/downloads/postgres-postgresql-downloads and download the latest version of PostgreSQL. 
+Go to \url{https://www.enterprisedb.com/downloads/postgres-postgresql-downloads} and download the latest version of PostgreSQL. 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=1\textwidth]{content/1-relational-databases/figures/1.install-for-windows-1.png}
@@ -520,6 +520,20 @@ Now that you have a basic understanding of constraints, you are ready to start c
 Now that you have a basic understanding of databases, and how to create a database, datatypes and constraints that you will encounter in this section, you are ready to start creating tables. This section will guide you through the process of creating a table, and how to use the constraints you have learned about.
 
 \subsection{Creating tables}
+The following codesnippet shows the available syntax for the create table operation. The syntax is the same for all database management systems, but the options available might differ. The options available in PostgreSQL are shown in the example.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Create a table
+    CREATE TABLE [IF NOT EXISTS] table_name (
+        column1 datatype(length) column_constraint,
+        column2 datatype(length) column_constraint,
+        ...
+        table_constraints
+    );
+\end{minted}
+
+What is important to understand here is that the name of the CREATE TABLE statement and a table name of your choosing is mandatory, the IF NOT EXISTS clause is optional. Each line under the CREATE statement, defines a column in the table. The column name, the datatype, and the column constraint is mandatory, and the length is optional. The table constraints is also optional, and is used to define constraints on the table as a whole. Moving this example to a concrete implementation of a table, the example below shows how to create a table with the name account, and the columns user\_id, username, and password.
+
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Create a table
     CREATE TABLE tableName (
@@ -528,6 +542,10 @@ Now that you have a basic understanding of databases, and how to create a databa
         password VARCHAR (250) NOT NULL -- never store in plain text
     );
 \end{minted}
+
+Specifically, from the CREATE statement, here we define a table name. The next line defines a PRIMARY KEY to ensure the line itself is unique and can be refered to. This line employs the SERIAL datatype to auto increment the value of the column with each new row that is added to the table. The line below defines a username that can be the maximum length of 50 characters, but defines that it must be defined using NOT NULL, and that no other row in the table can have the same value. The last line defines a password that can be the maximum length of 250 characters, but defines it must be set as the NOT NULL constraint is set. This is an example, never store passwords in plain text, and always use a hashing algorithm to hash the password before storing it in the database.
+
+The next example shows how to create a table with a foreign key. The example shows how to create a table with the name blog\_entries, and the columns id, header, body, and created\_by. The created\_by column is a foreign key that references the id column in the account table. 
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Create account table
@@ -549,31 +567,68 @@ Now that you have a basic understanding of databases, and how to create a databa
     );
 \end{minted}
 
+Note how a foreign key is defined, and how it REFERENCES the id column in the account table, and does not use its definition as a keyword. So, REFERENCES table(id), is the actual implementation of a FOREIGN KEY. This ensures a blog post cannot be created without a user to be associated with it. This also means that if a user is deleted and cascading deletions are enabled, all blog posts associated with that user will also be deleted. Normally tough, this is not the case, and a deletion will fail until all blog entries from that account is deleted.
+
+Now that we are able to create tables, the question arises, what happens if something was done wrong, and the table needs to be altered or deleted? 
+
 \subsection{Altering tables}
+If you wish to alter a table, you can use the ALTER TABLE statement. The following codesnippet shows the available syntax for the alter table operation. The syntax is the same for all database management systems, but the options available might differ. The options available in PostgreSQL are shown in the example.
+
 \begin{minted}[fontsize=\footnotesize]{postgresql}
-    -- Create a table
-    CREATE TABLE account (
-        user_id SERIAL PRIMARY KEY,
-        username VARCHAR (50) UNIQUE NOT NULL,
-        password VARCHAR (50) NOT NULL,
-        email VARCHAR (355) UNIQUE NOT NULL,
-        created_on TIMESTAMP NOT NULL,
-        last_login TIMESTAMP
-    );
+    -- Alter a table
+    ALTER TABLE table_name action;
 \end{minted}
 
-\subsection{Deleting tables}
+As you can see at this point, the alter command does not specify what action to take. The action is specified in the next line, and the available actions are shown in \cref{tab:1.postgresql-alter-table-actions}.
+
+\begin{table}[htb]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Action} & \textbf{Description} \\ \hline
+    \textbf{ADD} & Adds a new column to the table \\ \hline
+    \textbf{DROP} & Removes a column from the table \\ \hline
+    \textbf{ALTER} & Modifies the data type of a column in the table \\ \hline
+    \textbf{RENAME} & Renames a column in the table \\ \hline
+    \textbf{RENAME TO} & Renames the table \\ \hline
+    \textbf{SET} & Changes the value of a column in the table \\ \hline
+    \textbf{RESET} & Resets the value of a column in the table \\ \hline
+    \textbf{OWNER TO} & Changes the owner of the table \\ \hline
+    \end{tabular}%
+    }
+    \caption{Available actions for the ALTER TABLE statement}
+    \label{tab:1.postgresql-alter-table-actions}
+\end{table}
+
+From this point on, the task comes to find the correct action to take, and the correct syntax to use. The following example shows how to add a column to a table.
+
 \begin{minted}[fontsize=\footnotesize]{postgresql}
-    -- Create a table
-    CREATE TABLE account (
-        user_id SERIAL PRIMARY KEY,
-        username VARCHAR (50) UNIQUE NOT NULL,
-        password VARCHAR (50) NOT NULL,
-        email VARCHAR (355) UNIQUE NOT NULL,
-        created_on TIMESTAMP NOT NULL,
-        last_login TIMESTAMP
-    );
+    -- Add a column to a table
+    ALTER TABLE table_name 
+    ADD COLUMN column_name datatype column_constraint;
 \end{minted}
+
+For specific examples of how to use ALTER for each action, i recommend visting \url{https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-alter-table/} and read up on the documentation for the database management system you are using. The documentation will show you all the available actions, and how to use them.
+
+
+\subsection{Deleting tables}
+Compared to altering tables, deleting tables is a more straightforward operation. The following codesnippet shows the available syntax for the delete table operation. The syntax is the same for all database management systems, but the options available might differ. The options available in PostgreSQL are shown in the example.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Delete a table
+    DROP TABLE [IF EXISTS] table_name 
+    [CASCADE | RESTRICT];
+\end{minted}
+
+Here the name of the DROP TABLE statement and a table name of your choosing is mandatory, the IF EXISTS clause is optional, and the CASCADE | RESTRICT clause is also optional. The CASCADE | RESTRICT clause is used to specify what to do if the table has dependencies. If the table has dependencies, and CASCADE is specified, the table and all its dependencies will be deleted. If the table has dependencies, and RESTRICT is specified, the table will not be deleted. The following example shows how to delete a table and all of its dependencies.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Delete a table and all of its dependencies
+    DROP TABLE table_name CASCADE;
+\end{minted}
+
+At this point, you can now create databases, tables, and alter and delete tables. You are now ready to start working with databases. The next section will guide you through the process of inserting data into a table, and how to query the data from the table.
 
 \section{CRUD Operations}
 
