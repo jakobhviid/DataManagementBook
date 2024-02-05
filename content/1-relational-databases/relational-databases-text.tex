@@ -508,7 +508,7 @@ Another important concept to understand when working with databases is constrain
 \end{table}
 
 \begin{itemize}
-    \item \textbf{Primary Key:} A primary key is a field in a table which uniquely identifies each row/record in that table. It is a unique identifier for the rows in the table. A primary key cannot contain NULL values, and there can only be one primary key in a table. A primary key can be made up of one or more columns. When a primary key is made up of more than one column, it is called a composite key. Make sure your table \textbf{always} has a primary key, as it is the most important constraint in a table. With a primary key, you will often see a datatype of SERIAL, which is a special datatype that is used to auto increment the value of the column.
+    \item \textbf{Primary Key:} A primary key is a field in a table which uniquely identifies each row/record in that table. It is a unique identifier for the rows in the table. A primary key cannot contain NULL values, and there can only be one primary key in a table. A primary key can be made up of one or more columns. When a primary key is made up of more than one column, it is called a composite key. Make sure your table \textbf{always} has a primary key, as it is the most important constraint in a table. With a primary key, you will often see a datatype of SERIAL, which is a special datatype that is used to auto increment the value of the column. its underlying datatype is INTEGER. This is important to know when making foreign keys to the primary key, as the datatype of the foreign key must match the datatype of the primary key.
     \item \textbf{Foreign Key:} A foreign key is a field in a table that is a primary key in another table. It can be used to link two tables together. A foreign key can contain NULL values, unless otherwise specified, and there can be multiple foreign keys in a table. A foreign key is used to ensure that the value in the foreign key column exists in the primary key column in the other table. This is used to enforce referential integrity, and is used to link two tables together.
     \item \textbf{Unique:} A unique constraint is used to ensure that all values in a column are different. It is used to enforce the uniqueness of the values in a column, and is commonly used in conjunction with fields that contain an email address, or a username, to make sure that user does not exist multiple times, but of cause finds it use in other scenarios as well.
     \item \textbf{Not Null:} A not null constraint is used to ensure that a column cannot have a NULL value. What is a null value? A null value is a value that is not known, not available, or does not exist. It is different from a zero value or a field that contains spaces. A null value is used to represent a missing value, and is used to represent the absence of a value.
@@ -631,12 +631,528 @@ Here the name of the DROP TABLE statement and a table name of your choosing is m
 At this point, you can now create databases, tables, and alter and delete tables. You are now ready to start working with databases. The next section will guide you through the process of inserting data into a table, and how to query the data from the table.
 
 \section{CRUD Operations in Tables}
-CRUD is an acronym for Create, Read, Update, and Delete, and is used to refer to the basic operations of working with data in a database. Creating a databases and tables are relatively simple tasks, but the real complexities of databases come with working with data in tables. This section will introduce you to the basic operations of inserting, reading, updating, and deleting data in tables. 
+CRUD is an acronym for Create, Read, Update, and Delete, and is used to refer to the basic operations of working with data in a database. Creating a databases and tables are relatively simple tasks, but the real complexities of databases come with working with data in tables. This section will introduce you to the basic operations of inserting, reading, updating, and deleting data in tables. We start from the easiest operations, and move to the more complex operations, where retrieval interestingly enough is the most complex operation, due to the sheer amount of options available, and the need to be able to join tables together into coherent information.
 
 \subsection{Inserting data in tables}
-\subsection{Updating data in tables}
+The following codesnippet shows the available syntax for the insert operation. The syntax is the same for all database management systems, but the options available might differ. The options available in PostgreSQL are shown in the example below.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Syntax for inserting data into a table
+    INSERT INTO table1(column1, column2, …)
+    VALUES (value1, value2, …);
+\end{minted}
+
+Here it is important to understand that the name of the INSERT INTO statement and a table name of your choosing is mandatory, the column names and the VALUES clause is also mandatory. The column names and the VALUES clause must match, and the order of the column names and the VALUES clause must match. Specifically, this means that in column1, value1 will be inserted. So the person writing the SQL can define what comes first, or if all columns of a table is filled with data. If a column of the table is not specified, the cell for that row inserted will be NULL. The following example shows how to insert data into a table.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Creating a table for the example
+    CREATE TABLE cars (
+        id SERIAL PRIMARY KEY,
+        manufacturer VARCHAR(255) NOT NULL,
+        owner VARCHAR(255) NOT NULL,
+        last_update DATE
+    );
+
+    -- Inserting data into the table
+    INSERT INTO cars(manufacturer, owner)
+    VALUES ('Toyota', 'John Doe');
+
+    -- Show inserted data
+    SELECT * FROM cars;
+
+    /* table output
+    id | manufacturer | owner    | last_update
+    1  | Toyota       | John Doe | NULL
+    */
+\end{minted}
+
+The first part of the example creates a sample table. Here we can see the ID to be of type SERIAL, so it is an integer that autoincements. Manufacturer and owner are both VARCHAR(255) and are both required to be filled. The last\_update is a DATE, and is not required to be filled. The second part of the example inserts data into the table. Here we can see that the ID is not specified, and the last\_update is not specified.This means the ID will be auto incremented, and the last\_update will be NULL. The third part of the example uses a new command further explored in a later section, right now, suffice to know, that a SELECT is about reading something from the database, while the star means all columns, and FROM defines from what table this should be read. So, to command shows shows the inserted data. To comment below shows the output of the select statement if run. Here we can see that the ID is 1, the manufacturer is Toyota, the owner is John Doe, and the last\_update is NULL. There is one more option available when inserting bulk data into a database, which the example below shows.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Inserting bulk data into the table
+    INSERT INTO cars(manufacturer, owner)
+    VALUES ('Toyota', 'John Doe'),
+           ('Ford', 'Jane Doe'),
+           ('Chevrolet', 'John Smith');
+
+    -- Show inserted data
+    SELECT * FROM cars;
+
+    /* table output
+    id | manufacturer | owner    | last_update
+    1  | Toyota       | John Doe | NULL
+    2  | Ford         | Jane Doe | NULL
+    3  | Chevrolet    | John Smith | NULL
+    */
+\end{minted}
+
+In this case we can see that we are saving space by inserting multiple rows in one command. This is a good practice, and should be used when inserting multiple rows, and ensures we only specify the structure of the data once. The next section will guide you through the process of updating data in a table.
+
 \subsection{Deleting data in tables}
-\subsection{Querying and Joins}
+Deleting data in a table is a straightforward operation, though it does not come without its dangers. Everyone experienced with databases will at some point have seen an inexperienced novice delete an entire table as the forgot a part of the statement. The following codesnippet shows the available syntax for the delete operation. The syntax is the same for all database management systems, but the options available might differ. The options available in PostgreSQL are shown in the example below.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Syntax for deleting data from a table
+    DELETE FROM table_name
+    WHERE condition;
+\end{minted}
+
+Here it is important to understand that the name of the DELETE FROM statement and a table name of your choosing is mandatory, the WHERE clause is also mandatory. The WHERE clause is used to specify what rows to delete from the table. The following example shows how to delete data from a table.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Deleting data from the table
+    DELETE FROM cars
+    WHERE manufacturer = 'Toyota';
+
+    -- Show inserted data
+    SELECT * FROM cars;
+
+    /* table output
+    id | manufacturer | owner    | last_update
+    2  | Ford         | Jane Doe | NULL
+    3  | Chevrolet    | John Smith | NULL
+    */
+\end{minted}
+
+In this example, we now deleted the first entry of the table. The are multiple dangers with the delete statement, and it is important to be careful when using it. For example, yes, there was only one Toyota in the example above, but what if there were more? Then all of them would be deleted. Therefore, it is important to be as specific about what you want to delete, and the better option above would have to delete by ID, as the ID is unique, as this example shows.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Deleting data from the table
+    DELETE FROM cars
+    WHERE id = 2;
+
+    -- Show inserted data
+    SELECT * FROM cars;
+
+    /* table output
+    id | manufacturer | owner    | last_update
+    3  | Chevrolet    | John Smith | NULL
+    */
+\end{minted}
+
+In this example, we now deleted the second entry of the table. the last typical flaw implemented by most, is simply forgetting the WHERE clause, and deleting the entire table. This is a common mistake, and it is important to be careful when using the delete statement, as seen here.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Deleting data from the table
+    DELETE FROM cars;
+
+    -- Show inserted data
+    SELECT * FROM cars;
+
+    /* table output
+    id | manufacturer | owner    | last_update
+    */
+\end{minted}
+
+Remember, deleting data in a database is permanent, and a backup is the only way to recover the data. Databases has no recycle bin, and the data is gone forever. The next section will guide you through the process of updating data in a table.
+
+\subsection{Updating data in tables}
+Updating data in a table is a straightforward operation, and is used to change the data in a table. The following codesnippet shows the available syntax for the update operation. The syntax is the same for all database management systems, but the options available might differ. The options available in PostgreSQL are shown in the example below.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Syntax for updating data in a table
+    UPDATE table_name
+    SET column1 = value1, column2 = value2, …
+    WHERE condition;
+\end{minted}
+
+Here it is important to understand that the name of the UPDATE statement and a table name of your choosing is mandatory, the SET clause is also mandatory, and the WHERE clause is also mandatory. The SET clause is used to specify what to update in the table, and the WHERE clause is used to specify what rows to update in the table. The following example shows how to update data in a table.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Updating data in the table
+    UPDATE cars
+    SET owner = 'Jane Doe'
+    WHERE manufacturer = 'Ford';
+
+    -- Show inserted data
+    SELECT * FROM cars;
+
+    /* table output
+    id | manufacturer | owner    | last_update
+    1  | Toyota       | John Doe | NULL
+    2  | Ford         | Jane Doe | NULL
+    3  | Chevrolet    | John Smith | NULL
+    */
+\end{minted}
+
+Again here, the best way to update a row is by ID, as the ID is unique, and the best way to be sure you are updating the correct row, but the example works, and the manufacturer Ford now has the owner Jane Doe. Just as with the delete statement, the update statement is permanent, and you have the same problems as with the DELETE statement if you forget where, which will result in the following example.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Updating data in the table
+    UPDATE cars
+    SET owner = 'Jane Doe';
+
+    -- Show inserted data
+    SELECT * FROM cars;
+
+    /* table output
+    id | manufacturer | owner    | last_update
+    1  | Toyota       | Jane Doe | NULL
+    2  | Ford         | Jane Doe | NULL
+    3  | Chevrolet    | Jane Doe | NULL
+    */
+\end{minted}
+
+As you can see, all rows in the table now has the owner Jane Doe. The next section will guide you through the process of querying data from a table.
+
+\subsection{Querying}
+Querying data from a table is the most complex operation, and is used to retrieve data from a table. The following codesnippet shows the available syntax for the select operation. The syntax is the same for all database management systems, but the options available might differ. The options available in PostgreSQL are shown in the example below.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Syntax for querying data from a table
+    SELECT column1, column2, …
+    FROM table_name
+    WHERE condition;
+\end{minted}
+
+Here it is important to understand that the name of the SELECT statement and the column names and the FROM clause is mandatory, and the WHERE clause is also mandatory. The column names and the FROM clause must match, and the order of the column names and the FROM clause must match. The WHERE clause is used to specify what rows to retrieve from the table. The following example shows how to query data from a table.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Querying data from the table
+    SELECT * FROM cars;
+
+    /* table output
+    id | manufacturer | owner    | last_update
+    1  | Toyota       | John Doe | NULL
+    2  | Ford         | Jane Doe | NULL
+    3  | Chevrolet    | John Smith | NULL
+    */
+\end{minted}
+
+In this example, we are retrieving all rows from the table. The star means all columns, and the FROM defines from what table this should be read. The next example shows how to query specific columns from a table.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Querying specific columns from the table
+    SELECT manufacturer, owner FROM cars;
+
+    /* table output
+    manufacturer | owner
+    Toyota       | John Doe
+    Ford         | Jane Doe
+    Chevrolet    | John Smith
+    */
+\end{minted}
+
+In this example, we are retrieving the manufacturer and owner columns from the table. The next example shows how to query specific rows from a table.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Querying specific rows from the table
+    SELECT * FROM cars
+    WHERE manufacturer = 'Toyota';
+
+    /* table output
+    id | manufacturer | owner    | last_update
+    1  | Toyota       | John Doe | NULL
+    */
+\end{minted}
+
+In this example, we are retrieving all rows from the table where the manufacturer is Toyota. The next example shows how to query specific rows from a table, and order the results. For this example, we are going to add a few more rows to the table.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Inserting bulk data into the table
+    INSERT INTO cars(manufacturer, owner)
+    VALUES ('Toyota', 'John Doe'),
+           ('Ford', 'Jane Doe'),
+           ('Chevrolet', 'John Smith'),
+           ('Toyota', 'Jane Smith'),
+           ('Ford', 'John Smith'),
+           ('Chevrolet', 'Jane Doe');
+
+    -- Querying specific rows from the table, and order the results
+    SELECT * FROM cars
+    WHERE manufacturer = 'Toyota'
+    ORDER BY owner;
+
+    /* table output
+    id | manufacturer | owner    | last_update
+    1  | Toyota       | John Doe | NULL
+    4  | Toyota       | Jane Smith | NULL
+    */
+\end{minted}
+
+In this example, we are retrieving all rows from the table where the manufacturer is Toyota, and ordering the results by the owner. The next example shows how to query specific rows from a table, and limit the results.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Querying specific rows from the table, and limit the results
+    SELECT * FROM cars
+    WHERE manufacturer = 'Toyota'
+    ORDER BY owner
+    LIMIT 1;
+
+    /* table output
+    id | manufacturer | owner    | last_update
+    1  | Toyota       | John Doe | NULL
+    */
+\end{minted}
+
+In this example, we are retrieving all rows from the table where the manufacturer is Toyota, and ordering the results by the owner, and limiting the results to 1. The next example shows how to query specific rows from a table, and group the results.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Querying specific rows from the table, and group the results
+    SELECT manufacturer, COUNT(*) FROM cars
+    GROUP BY manufacturer;
+
+    /* table output
+    manufacturer | count
+    Toyota       | 2
+    Ford         | 2
+    Chevrolet    | 2
+    */
+\end{minted}
+
+In this example, we are retrieving the manufacturer and the count of rows from the table, and grouping the results by the manufacturer. The next section expands on querying for data, by allowing you to join multiple tables together.
+
+\subsection{Basic Joins}
+For this section to make sense, as a reader, you first need to understand the different types of joins a database management system can perform. The different types of joins are shown in \cref{tab:1.postgresql-joins}.
+
+\begin{table}[htb]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Join} & \textbf{Description} \\ \hline
+    \textbf{INNER JOIN} & Returns records that have matching values in both tables \\ \hline
+    \textbf{LEFT JOIN} & Returns all records from the left table, and the matched records from the right table \\ \hline
+    \textbf{RIGHT JOIN} & Returns all records from the right table, and the matched records from the left table \\ \hline
+    \textbf{FULL JOIN} & Returns all records when there is a match in either left or right table \\ \hline
+    \end{tabular}%
+    }
+    \caption{Commonly used joins in PostgreSQL}
+    \label{tab:1.postgresql-joins}
+\end{table}
+
+In this section several examples will be shown, but will all work from the following example. The example is a simple example of a database with two tables, that are designed to showcase the different types of joins. We are diverging from the cars example here, as it is not a good example to showcase the different types of joins. The example below shows how to create two tables, and insert data into the tables.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Create table one
+    CREATE TABLE table_one (
+        num INTEGER PRIMARY KEY,
+        name VARCHAR(255) NOT NULL
+    );
+
+    -- Create table two
+    CREATE TABLE table_two (
+        num INTEGER PRIMARY KEY,
+        value VARCHAR(255) NOT NULL
+    );
+
+    -- Insert data into table one
+    INSERT INTO table_one(num, name)
+    VALUES (1, 'a'),
+           (2, 'b'),
+           (3, 'c');
+
+    -- Insert data into table two
+    INSERT INTO table_two(num, value)
+    VALUES (1, 'xxx'),
+           (2, 'yyy'),
+           (5, 'zzz');
+    
+    -- Show inserted data
+    SELECT * FROM table_one;
+    SELECT * FROM table_two;
+
+    /* table outputs
+    num | name
+    1   | a
+    2   | b
+    3   | c
+    
+    num | value
+    1   | xxx
+    2   | yyy
+    5   | zzz
+    */
+\end{minted}
+
+The example data is not a good way of creating a database, but an extreme example of how to exemplify the different join types, and should not be used for any other purpose.
+
+\subsubsection{Inner Joins}
+Joins allows us to take the content from two tables and combine them into one coherent result. To support the table above, lets show a few visual examples of how the different joins work. The following examples shows how the different joins work.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{content/1-relational-databases/figures/joins/innerjoin.png}
+    \caption{An inner join; here only the overlapping orange area is returned, leaving out data not intersecting in both tables}
+    \label{fig:1.innerjoin}
+\end{figure}
+
+As \cref{fig:1.innerjoin} shows, an inner join only returns the overlapping orange area, and leaves out data not intersecting in both tables. There are implicit and explicit joins in SQL, and the example below shows how to perform an explicit inner join.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Querying specific rows from the table, and join 
+    -- the results from another table
+    SELECT table_one.num, table_one.name, table_two.value
+    FROM table_one
+    INNER JOIN table_two ON table_one.num = table_two.num;
+
+    /* table output
+    num | name | value
+    1   | a    | xxx
+    2   | b    | yyy
+    */
+
+    -- one can also make an implicit inner join
+    -- the result is the same, but the syntax is different
+    SELECT table_one.num, table_one.name, table_two.value
+    FROM table_one, table_two
+    WHERE table_one.num = table_two.num;
+\end{minted}
+
+Here the significance is that all rows that had intersecting data in both tables are returned, and the rest is left out, which leaves only two columns in the result. The next example shows how to perform a left join.
+
+\subsubsection{Left and Right Joins}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{content/1-relational-databases/figures/joins/leftjoin.png}
+    \caption{A left join; here the entire yellow area is returned, joined with the overlapping part from the B table}
+    \label{fig:1.leftjoin}
+\end{figure}
+
+Here \cref{fig:1.leftjoin} shows a left join, and the entire yellow area is returned, joined with the overlapping part from the B table. The next example shows how to perform a left join.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Querying specific rows from the table, and join 
+    -- the results from another table
+    SELECT table_one.num, table_one.name, table_two.value
+    FROM table_one
+    LEFT JOIN table_two ON table_one.num = table_two.num;
+
+    /* table output
+    num | name | value
+    1   | a    | xxx
+    2   | b    | yyy
+    3   | c    | NULL
+    */
+\end{minted}
+
+Again, here all the rows from the A side is kept, while the B side is only kept if it intersects with the A side. Notice the 3rd entry has a null value, as no data was found in table two. The next example shows how to perform a right join.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{content/1-relational-databases/figures/joins/rightjoin.png}
+    \caption{A right join; here the entire yellow area is returned, joined with the overlapping part from the A table}
+    \label{fig:1.rightjoin}
+\end{figure}
+
+Here \cref{fig:1.rightjoin} shows a right join, and the entire yellow area is returned, joined with the overlapping part from the A table. Here the exact same occurs as with the left join, but the roles are reversed. Lets see how a right join works.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Querying specific rows from the table, and join 
+    -- the results from another table
+    SELECT table_one.num, table_one.name, table_two.value
+    FROM table_one
+    RIGHT JOIN table_two ON table_one.num = table_two.num;
+
+    /* table output
+    num | name | value
+    1   | a    | xxx
+    2   | b    | yyy
+    NULL| NULL | zzz
+    */
+\end{minted}
+
+And as predicted, the result is the same, but the roles are reversed. At this point, we see both NUM and NAME are null for the third entry as no overlapping data was found in table one. The last example shows how to perform a full join.
+
+\subsubsection{Full Joins and full outer joins}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{content/1-relational-databases/figures/joins/fulljoin.png}
+    \caption{A full join; everything and intersections are returned, but it also keeps non intersecting data}
+    \label{fig:1.fulljoin}
+\end{figure}
+
+Here \cref{fig:1.fulljoin} shows a full join, and everything and intersections are returned, but it also keeps non intersecting data. The next example shows how to perform a full join.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Querying specific rows from the table, and join 
+    -- the results from another table
+    SELECT table_one.num, table_one.name, table_two.value
+    FROM table_one
+    FULL JOIN table_two ON table_one.num = table_two.num;
+
+    /* table output
+    num | name | value
+    1   | a    | xxx
+    2   | b    | yyy
+    3   | c    | NULL
+    NULL| NULL | zzz
+    */
+\end{minted}
+
+Lastly, a full outer join can be performed, where in \cref{fig:1.fulljoin}, it would only take the A and the B side, but leave out all intersections. Here is a code example of how to perform a full outer join.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Querying specific rows from the table, and join 
+    -- the results from another table
+    SELECT table_one.num, table_one.name, table_two.value
+    FROM table_one
+    FULL OUTER JOIN table_two ON table_one.num = table_two.num;
+
+    /* table output
+    num | name | value
+    3   | c    | NULL
+    NULL| NULL | zzz
+    */
+\end{minted}
+
+\subsection{Practical joins}
+
+The next example shows how to query specific rows from a table, and join the results from another table. We are going to create the entire example from scratch, so you can see how referential integrity works with the foreign key. In this example, users from the account table can own cars from the cars table.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Create account table
+    CREATE TABLE account (
+        id serial PRIMARY KEY,
+        username VARCHAR (50) UNIQUE NOT NULL,
+        created_on TIMESTAMP NOT NULL, 
+        last_login TIMESTAMP
+    );
+
+    -- Create cars table
+    CREATE TABLE cars (
+        id SERIAL PRIMARY KEY,
+        manufacturer VARCHAR(255) NOT NULL,
+        owner INTEGER NOT NULL REFERENCES account (id),
+        last_update DATE
+    );
+
+    -- Inserting data into the account table
+    INSERT INTO account(username, created_on)
+    VALUES ('John Doe', '2020-01-01'),
+           ('Jane Doe', '2020-01-01'),
+           ('John Smith', '2020-01-01'),
+           ('Jane Smith', '2020-01-01');
+
+    -- Inserting data into the cars table
+    INSERT INTO cars(manufacturer, owner)
+    VALUES ('Toyota', 1),
+           ('Ford', 2),
+           ('Chevrolet', 3),
+           ('Toyota', 4),
+           ('Ford', 3),
+           ('Chevrolet', 2);
+
+    -- Querying specific rows from the cars table, and join the results from the account table
+    SELECT cars.id, cars.manufacturer, account.username
+    FROM cars
+    JOIN account ON cars.owner = account.id;
+
+    /* table output
+    id | manufacturer | username
+    1  | Toyota       | John Doe
+    2  | Ford         | Jane Doe
+    3  | Chevrolet    | John Smith
+    4  | Toyota       | Jane Smith
+    5  | Ford         | John Smith
+    6  | Chevrolet    | Jane Doe
+    */
+\end{minted}
+
+
 \subsection{Nested Queries}
 
 % ******************************* Chapter: ER, EER Modeling and Database Design ****************************
