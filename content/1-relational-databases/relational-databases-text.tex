@@ -195,6 +195,9 @@ This is not the password you will use to connect to the database server, but the
 Installation of PostgreSQL on a Mac is done through the terminal. You can pick any way to do this, but we are going to use the homebrew (https://brew.sh) solution. Open the terminal, and run the following command to install homebrew: 
 
 \begin{minted}[fontsize=\footnotesize]{bash}
+    # Install homebrew
+    # path broken into two lines for readability
+    # if you copy this, make sure to remove the line break
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com
         /Homebrew/install/HEAD/install.sh)"
 \end{minted}
@@ -203,7 +206,6 @@ Or copy it directly from the frontpage of the homebrew website. After homebrew i
 
 \begin{minted}[fontsize=\footnotesize]{bash}
     brew install postgresql
-    /opt/homebrew/bin/createuser -s postgres
 \end{minted}
 
 After PostgreSQL is installed, you can start the server by running the following command in the terminal:
@@ -225,11 +227,22 @@ And if you only want to start the server once, you can run the following command
 \end{minted}
 
 
-PostgreSQL will not have a password set at this point, and a password needs to be set using the comandline. It can be set by running the following command in the terminal:
+PostgreSQL will not have a password set at this point, and a user needs to be created, and a password needs to be set. It can be set by running the following command in the terminal:
 
 \begin{minted}[fontsize=\footnotesize]{bash}
+    # Create the postgres user
+    createuser -s postgres
+    # Sometimes the createuser script is located in /usr/local/bin 
+    # or /opt/homebrew/bin/ instead, which requires running the 
+    # following command instead (substitute the path with the 
+    # correct path)
+    /usr/local/bin/createuser -s postgres
+
+    # Set the password for the postgres user, at the second
+    # command, you will be prompted to write a password
     psql postgres
     \password postgres
+    \q
 \end{minted}
 
 Running the above code will prompt you to write a password for the postgres user. Remember this password, as you will need it every time you connect to the database server instance. 
@@ -265,8 +278,13 @@ This will start the PostgreSQL server, and it will start automatically every tim
 PostgreSQL will not have a password set at this point, and a password needs to be set using the comandline. It can be set by running the following command in the terminal:
 
 \begin{minted}[fontsize=\footnotesize]{bash}
+    # Create the postgres user
+    createuser -s postgres
+
+    # Set the password for the postgres user
     psql postgres
     \password postgres
+    \q
 \end{minted}
 
 Running the above code will prompt you to write a password for the postgres user. Remember this password, as you will need it every time you connect to the database server instance. 
