@@ -5,41 +5,41 @@
 %this is a overarching PART that can be replicated to change overarching areas in the book
 \part{Relational Databases}
 \label{part:relationaldatabases}
-This \lcnamecref{part:relationaldatabases} of the book teaches the basics of relational databases. It will walk you through the basics of relational databases, and how to design a database from scratch. After this, it will teach you how to create ER and EER diagrams, and how to design a database from an ER model. Finally, it will teach you how to normalize a database to the 4th normal form.
+This \lcnamecref{part:relationaldatabases} of the book teaches the basics of relational databases. It will walk you through the basics of relational databases and how to design a database from scratch. After this, it will teach you how to create ER and EER diagrams and design and develop a database from an ER model. Finally, it will teach you how to normalize a database to the 4th normal form.
 
 % ******************************* Chapter: Introduction ****************************
 \chapter{Introduction}
 \label{chap:relational:introduction}
-This chapter introduces the fundamental concept of databases. It begins with a clear definition of what databases are, providing an overview of their purpose and significance in storing and managing information. The chapter then guides the reader through the process of database creation, highlighting the key steps involved from design to deployment. Essential components of a database, such as tables, fields, keys, and relationships, are explained in a concise manner. This chapter serves as a foundational starting point for those new to databases, offering a clear understanding of their basic structure and components.
+This chapter introduces the fundamental concept of databases. It begins with a clear definition of databases, providing an overview of their purpose and significance in storing and managing information. The chapter then guides the reader through the database creation process, highlighting the critical steps from design to deployment. Essential components of a database, such as tables, fields, keys, and relationships, are explained concisely. This chapter serves as a foundational starting point for those new to databases, offering a clear understanding of their basic structure and components.
 
 \section{What is a database?}
-A database is a place data can be stored in large quantities in a structured way. It is a collection of data that is organized in such a way that it can be easily accessed, managed and updated. A key property of databases is also the fact that they are persistent, meaning that the data is stored on a physical medium, such as a hard drive, and is not lost when the computer is turned off, as well as the fact that it allows you to create dynamic queries, meaning that you can ask complex questions of the data.
+A database is where data can be stored in large quantities in a structured way. It collects organized data to be easily accessed, managed, and updated. A fundamental property of databases is also the fact that they are persistent, meaning that the data is stored on a physical medium, such as a hard drive, and is not lost when the computer is turned off, as well as the fact that it allows you to create dynamic queries, meaning that you can ask complex questions of the data.
 
 A database is a structured and organized collection of data that serves as a centralized repository for storing, managing, and retrieving information. Its primary purpose is to efficiently store and manipulate data to support various applications and processes. At its core, a database consists of two key elements:
 
 \begin{enumerate}
-    \item Data: Data is the fundamental building block of a database. It represents the information that needs to be stored, and it can take various forms, including text, numbers, dates, and multimedia. Data is organized into tables, records, and fields, with each table containing related information and each record representing a distinct unit of data, while fields hold specific attributes or properties of that data.
-    \item Database Management System (DBMS): The DBMS is the software that facilitates interactions with the database. It acts as an intermediary between users or applications and the actual data storage. The DBMS provides essential functionalities such as data retrieval, insertion, updating, and deletion, as well as enforcing data integrity, security, and ensuring efficient data access through query processing. It also manages concurrency control to ensure that multiple users can work with the database simultaneously without data conflicts.
-    \item Querying: is another key element of databases. Querying involves the ability to retrieve specific information from the database based on predefined criteria or user-defined queries. It allows users to filter, search, and analyze data to extract meaningful insights. Querying is facilitated through a query language (e.g., SQL for relational databases) or query APIs (Application Programming Interfaces) that enable users and applications to interact with the database and request specific subsets of data. The querying aspect is crucial because it empowers users to access and manipulate data in a flexible and efficient manner, making databases highly versatile for various applications, including research, reporting, decision-making, and data analysis. Whether it's retrieving a list of products from an inventory database or extracting research findings from a scientific database, querying capabilities are fundamental to harnessing the full potential of a database's stored information.
+    \item Data: Data is the fundamental building block of a database. It represents the information that needs to be stored and can take various forms, including text, numbers, dates, and multimedia. Data is organized into tables, records, and fields, with each table containing related information and each record representing a distinct data unit. In contrast, fields hold specific attributes or properties of that data.
+    \item Database Management System (DBMS): The DBMS is the software that facilitates interactions with the database. It is an intermediary between users or applications and the actual data storage. The DBMS provides essential functionalities such as data retrieval, insertion, updating, and deletion, enforces data integrity and security, and ensures efficient data access through query processing. It also manages concurrency control to support multiple users working with the database without data conflicts.
+    \item Querying: is another crucial element of databases. Querying involves retrieving specific information from the database based on predefined criteria or user-defined queries. It allows users to filter, search, and analyze data to extract meaningful insights. Querying is facilitated through a query language (e.g., SQL for relational databases) or query APIs (Application Programming Interfaces) that enable users and applications to interact with the database and request specific subsets of data. Querying is crucial because it empowers users to access and manipulate data flexibly and efficiently, making databases highly versatile for various applications, including research, reporting, decision-making, and data analysis. Whether retrieving a list of products from an inventory database or extracting research findings from a scientific database, querying capabilities are fundamental to harnessing the full potential of a database's stored information.
 \end{enumerate}
 
-A database, regardless of its specific type, serves as a vital tool for efficiently organizing and manipulating data, making it accessible and useful for various purposes, including research, analysis, and application development.
+Regardless of its specific type, a database is vital for efficiently organizing and manipulating data, making it accessible and useful for various purposes, including research, analysis, and application development.
 
 \section{What exactly is a relational database?}
 A relational database is a specific type of database management system (DBMS) that organizes and manages data using a structured approach based on the principles of relational algebra. It differs from the broader term "database" in several key ways:
 
 \begin{enumerate}
-    \item Data Structure: In a relational database, data is structured into tables, where each table consists of rows (tuples) and columns (attributes, properties). This tabular format is highly organized and allows for the representation of complex relationships between data entities. Each table represents a distinct entity or concept, and the relationships between these tables are defined through keys, such as primary keys and foreign keys.
-    \item Data Integrity: Relational databases enforce data integrity through a set of rules and constraints. These constraints ensure that data remains consistent and accurate. For example, primary keys enforce the uniqueness of each record in a table, while foreign keys establish relationships between tables, maintaining referential integrity. These mechanisms help prevent data anomalies and maintain data quality.
-    \item SQL Language: Relational databases use the Structured Query Language (SQL) as the standard interface for querying and manipulating data. SQL provides a powerful and standardized way to interact with the database, allowing users to perform operations like querying, inserting, updating, and deleting data. SQL's declarative nature enables users to specify what data they want, rather than how to retrieve it.
+    \item Data Structure: In a relational database, data is structured into tables, where each table consists of rows (tuples) and columns (attributes, properties). This tabular format is highly organized and allows for representing complex relationships between data entities. Each table represents a distinct entity or concept, and the relationships between these tables are defined through keys, such as primary keys and foreign keys.
+    \item Data Integrity: Relational databases enforce data integrity through rules and constraints. These constraints ensure that data remains consistent and accurate. For example, primary keys enforce the uniqueness of each record in a table, while foreign keys establish relationships between tables, maintaining referential integrity. These mechanisms help prevent data anomalies and maintain data quality.
+    \item SQL Language: Relational databases use the Structured Query Language (SQL) as the standard interface for querying and manipulating data. SQL provides a robust and standardized way to interact with the database, allowing users to perform operations like querying, inserting, updating, and deleting data. SQL's declarative nature enables users to specify what data they want rather than how to retrieve it.
     \item ACID Properties: Relational databases adhere to the ACID (Atomicity, Consistency, Isolation, Durability) properties to ensure transactional reliability. These properties guarantee that database transactions are processed in a way that maintains data consistency and reliability, even in the presence of system failures.
-    \item Schema-Based: Relational databases have a defined schema that outlines the structure of the database, including the tables, their attributes, and the relationships between them. This schema acts as a blueprint for the data, providing a clear structure that facilitates data organization, consistency, and scalability. Changes to the schema are typically managed with care to maintain data integrity.
+    \item Schema-Based: Relational databases have a defined schema that outlines the structure of the database, including the tables, their attributes, and the relationships between them. This schema is a blueprint for the data, providing a clear structure that facilitates data organization, consistency, and scalability. Changes to the schema are typically managed with care to maintain data integrity.
 \end{enumerate}
 
-The term "database" represents a general concept of data storage and management, a relational database is a specific type of database system that follows the principles of data organization, integrity enforcement, and querying through structured tables and SQL. Relational databases are well-suited for applications requiring complex data relationships, data consistency, and transactional reliability, making them a widely used choice in various industries and research settings.
+The term "database" represents a general data storage and management concept. A relational database is a specific type of database system that follows the principles of data organization, integrity enforcement, and querying through structured tables and SQL. Relational databases are well-suited for applications requiring complex data relationships, consistency, and transactional reliability, making them widely used in various industries and research settings.
 
 \section{Why use a relational database?}
-First of, relational databases tend to be the default choice of database, unless specific other requirements or circumstances exist. This is because relational databases are the most mature, and most widely used database type. This means that there is a lot of support for relational databases, and a lot of people know how to work with them. It is easy to find people to work with relational databases, and that there is a lot of documentation and support available.
+First of all, relational databases tend to be the default choice of database unless other specific requirements or circumstances exist. This default choice is because relational databases are the most mature and widely used database type. This maturity means there is a lot of support for relational databases, and many people know how to work with them. Finding people to work with relational databases is easy, and much documentation and support is available.
 
 \begin{figure}[htbp]
     \centering
@@ -48,26 +48,26 @@ First of, relational databases tend to be the default choice of database, unless
     \label{fig:0.i1-databases-everywhere.png}
 \end{figure}
 
-You interact every day with devices that include databases, and with services that does the same. Examples are:
+You interact daily with devices that include databases and services that do the same. Examples are:
 
 \begin{itemize}
     \item Your phone and every single app on your phone
     \item Your computer and most of the applications herein.
-    \item All websites you visit, such as your bank, google, etc. (few exceptions exist, but any website that is dynamic and that can save data, will most likely also use a database)
+    \item All websites you visit, such as your bank, google, etc. (few exceptions exist, but any website that is dynamic and that can save data will most likely also use a database)
     \item Your social media
     \item Your email
     \item Your favorite online store
     \item Your favorite games
 \end{itemize}
 
-While databases are everywhere now, this was not always the case. Databases have been around for a long time, but they were not always as popular as they are now. The first databases were created in the 1960s, and were used for large scale data processing, while they slowly became more and more used, expecially at the end of 1970, and the beginning of 1980. The first relational database was created in 1970, and was called the relational model. It was created by Edgar F. Codd, and was based on the mathematical theory of sets and relations. The relational model was a huge success, and is still the most widely used database model today. The relational model was so successful, that it is often used as a synonym for relational databases, and that relational databases are often called relational models.
+While databases are everywhere now, this was not always the case. Databases have existed for a long time but were not always as popular as now. The first databases were created in the 1960s and were used for large-scale data processing, while they slowly became more and more used, especially at the end of 1970 and the beginning of 1980. The first relational database was created in 1970 and was called the relational model. It was created by Edgar F. Codd and was based on the mathematical theory of sets and relations. The relational model was a huge success and is still today's most widely used database model. The relational model was so successful that it is often used as a synonym for relational databases.
 
-Initially, relational databases were predominantly utilized in substantial organizations such as banks, or for calculating salaries in major corporations. This exclusivity was due to the high cost of the computers required to operate these databases, rendering them unaffordable for the average person. However, this scenario transformed dramatically in the 1980s with the rising popularity and affordability of personal computers. As computers became more accessible, a larger segment of the population could afford to own and run a database on their personal computers. Consequently, this led to a surge in database usage, significantly increasing the demand for and creation of databases. The growth in demand meant that an ever-increasing number of people began to use databases, further amplifying their prevalence and importance in the digital world.
+Initially, relational databases were predominantly utilized in substantial organizations such as banks or for calculating salaries in major corporations. This exclusivity was due to the high cost of the computers required to operate these databases, rendering them unaffordable for the average person. However, this scenario transformed dramatically in the 1980s with the rising popularity and affordability of personal computers. As computers became more accessible, a more significant segment of the population could afford to own and run a database on their personal computers. Consequently, this led to a surge in database usage, significantly increasing the demand for and creation of databases. The growth in demand meant that an ever-increasing number of people began to use databases, further amplifying their prevalence and importance in the digital world.
 
 \section{What is SQL?}
-SQL, which stands for Structured Query Language, is the cornerstone of relational databases. It's a specialized programming language designed for managing and manipulating data held in a relational database management system (RDBMS). SQL is essential for various operations within these databases, including querying, updating, and managing data.
+SQL, which stands for Structured Query Language, is the cornerstone of relational databases. It's a specialized programming language designed to manage and manipulate data in a relational database management system (RDBMS). SQL is essential for various operations within these databases, including querying, updating, and managing data.
 
-Relational databases store data in tables, which are akin to spreadsheets with rows and columns. Each row represents a unique record, and each column a specific attribute of the data. The power of relational databases lies in their ability to efficiently organize and retrieve large volumes of data through the use of relations, typically in the form of tables.
+Relational databases store data in tables akin to spreadsheets with rows and columns. Each row represents a unique record, and each column a specific attribute of the data. The power of relational databases lies in their ability to efficiently organize and retrieve large volumes of data through the use of relations, typically in the form of tables.
 
 SQL plays a pivotal role in this process. It allows users to:
 
@@ -96,13 +96,13 @@ Choosing PostgreSQL for database management comes with several advantages:
     \item \textbf{Open Source:} Being open-source, it's free to use, modify, and distribute. This aspect makes it particularly attractive for startups and companies looking to reduce costs without sacrificing quality.
     \item \textbf{Community-Driven Development:} PostgreSQL benefits from a vibrant community that continuously contributes to its development, ensuring the database is always evolving to meet user needs.
     \item \textbf{Reliability and Stability:} It's known for its data integrity and resilience. Businesses can rely on PostgreSQL for critical applications requiring consistent uptime and robustness.
-    \item \textbf{Flexibility for Developers:} PostgreSQL's support for various programming languages and its extensibility make it highly adaptable for a wide range of applications.
-    \item \textbf{Scalability:} It handles large volumes of data effectively, making it suitable for businesses that anticipate growth in data volume and user load.
+    \item \textbf{Flexibility for Developers:} PostgreSQL's support for various programming languages and its extensibility make it highly adaptable for various applications.
+    \item \textbf{Scalability:} It handles large volumes of data effectively, making it suitable for businesses anticipating growth in data volume and user load.
 \end{itemize}
 
-PostgreSQL represents a sophisticated and reliable choice within the realm of relational databases. Its adherence to SQL standards, coupled with its open-source nature, makes it a formidable tool for businesses and developers seeking a powerful, scalable, and cost-effective database solution. The most used relational database management systems are currently Oracle, MySQL (Hereunder MariaDB and other variants), Microsoft SQL Server, PostgreSQL, IBM Db2, and SQLite.
+PostgreSQL represents a sophisticated and reliable choice within the realm of relational databases. Its adherence to SQL standards and its open-source nature make it a formidable tool for businesses and developers seeking a robust, scalable, and cost-effective database solution. The most used relational database management systems are Oracle, MySQL (Hereunder MariaDB and other variants), Microsoft SQL Server, PostgreSQL, IBM Db2, and SQLite.
 
-This book currently uses PostgreSQL, but will later add examples in MySQL (or variants), MSSQL and SQLite.
+This book currently uses PostgreSQL but will add examples in MySQL (or variants), MSSQL, and SQLite.
 
 
 \section{Getting to terms with the terminology}
@@ -137,7 +137,7 @@ The relationship among these components is hierarchical and interdependent. At t
     \label{fig:1.dbms-content-anatomy.png}
 \end{figure}
 
-As databases became more complex, the terminology also became more complex. The terms one needs to understand, and how they relate to each other, are shown in \cref{fig:1.dbms-content-anatomy.png}. A computer, also called a server if its only purpose is to host services for other machines, can have multiple installed DBMS' of a single type. Each installation is separate, and has its own users, and listens to its own port for connections. These separatly installed DBMS' are called instances, and are typically created when a company or customer needs full rights to the DBMS system to create new users and more. Each instance of the DBMS is able to hold multiple databases. Databases can have its own users, and are normally the first tool to reach for when separating access to data, where creating new instances should only be done if separate databases does not satisfy the requirements of the system implementor. Each of theses databases, can in turn, hold multiple tables. Each table can hold multiple rows, and each row can hold multiple columns. Each column can hold multiple cells, and each cell can hold a single value.
+As databases became more complex, the terminology also became more complex. The terms one needs to understand and how they relate to each other are shown in \cref{fig:1.dbms-content-anatomy.png}. A computer also called a server if its only purpose is to host services for different machines, can have multiple installed DBMSs of a single type. Each installation is separate, and has its own users, and listens to its own port for connections. These separately installed DBMS' are called instances and are typically created when a company or customer needs full rights to the DBMS system to create new users and more. Each instance of the DBMS is able to hold multiple databases. Databases can have its own users, and are usually the first tool to reach for when separating access to data, where creating new instances should only be done if separate databases does not satisfy the requirements of the system implementor. Each of theses databases, can in turn, hold multiple tables. Each table can contain multiple rows, and each row can contain multiple columns. Each column can contain multiple cells, and each cell can contain a single value.
 
 \begin{figure}[htbp]
     \centering
@@ -146,7 +146,7 @@ As databases became more complex, the terminology also became more complex. The 
     \label{fig:1.dbms-connection-explained.png}
 \end{figure}
 
-To connect to the database we want, an application would need to either connect to an instance on the localhost, or an instance on another server. in \cref{fig:1.dbms-connection-explained.png}, we explore how this works. The green arrow would be connecting to a DBMS server within the same physical machine, also often called localhost. It tends to be called localhost, as localhost will always resolve to 127.0.0.1, which is the loopback, that is always the computer you are on. The application will need to create a connection string, and this string contains the IP (in this case localhost), the user, the password, and the name of the database the application wishes to connect to. When following the yellow arrow though, we are trying to connect to a different computer to get our data. For this, we need the same information as before, but the application now needs the IP from the remote server in the connection string. Once that detail is changed, the connection can now commence, but the connection will be slower, as the data needs to traverse the network. An application will need multiple connection strings and connections over the network if it wants data from multiple databases, or from multiple instances.
+To connect to the database we want, an application would need to either connect to an instance on the localhost or an instance on another server. In \cref{fig:1.dbms-connection-explained.png}, we explore how this works. The green arrow would be connecting to a DBMS server within the same physical machine, also often called localhost. It tends to be called localhost, as localhost will always resolve to 127.0.0.1, which is the loopback that is always the computer you are on. The application will need to create a connection string, and this string contains the IP (in this case localhost), the user, the password, and the name of the database the application wishes to connect to. When following the yellow arrow though, we are trying to connect to a different computer to get our data. For this, we need the same information as before, but the application now needs the IP from the remote server in the connection string. Once that detail is changed, the connection can now commence, but the connection will be slower as the data needs to traverse the network. An application will need multiple connection strings and connections over the network if it wants data from various databases, or from multiple instances.
 
 \subsection{The anatomy of a table}
 As can be seen in \cref{fig:2.table-definitions.png}, a table is structured through a series of rows and columns that intersect to form cells. Each column in the table is headed by an attribute, which is also commonly referred to as a field, column, or property. These attributes represent the data categories within the table, defining the kind of data each column holds. Similarly, each row in the table is known as a tuple, which can alternatively be called a row, record or an entry. Tuples are instances of the data, encompassing a unique set of values for the attributes defined by the columns. Together, attributes and tuples constitute the fundamental framework of a table.
@@ -561,7 +561,7 @@ What is important to understand here is that the name of the CREATE TABLE statem
     );
 \end{minted}
 
-Specifically, from the CREATE statement, here we define a table name. The next line defines a PRIMARY KEY to ensure the line itself is unique and can be refered to. This line employs the SERIAL datatype to auto increment the value of the column with each new row that is added to the table. The line below defines a username that can be the maximum length of 50 characters, but defines that it must be defined using NOT NULL, and that no other row in the table can have the same value. The last line defines a password that can be the maximum length of 250 characters, but defines it must be set as the NOT NULL constraint is set. This is an example, never store passwords in plain text, and always use a hashing algorithm to hash the password before storing it in the database.
+Specifically, from the CREATE statement, we define a table name here. The following line defines a PRIMARY KEY to ensure the line is unique and can be referred to. This line employs the SERIAL datatype to auto-increment the column's value with each new row added to the table. The line below defines a username that can be the maximum length of 50 characters, but defines that it must be defined using NOT NULL, and that no other row in the table can have the same value. The last line represents a password that can be the maximum length of 250 characters but determines it must be set as the NOT NULL constraint is set. For example, never store passwords in plain text, and always use a hashing algorithm to hash the password before storing it in the database.
 
 The next example shows how to create a table with a foreign key. The example shows how to create a table with the name blog\_entries, and the columns id, header, body, and created\_by. The created\_by column is a foreign key that references the id column in the account table. 
 
@@ -585,19 +585,19 @@ The next example shows how to create a table with a foreign key. The example sho
     );
 \end{minted}
 
-Note how a foreign key is defined, and how it REFERENCES the id column in the account table, and does not use its definition as a keyword. So, REFERENCES table(id), is the actual implementation of a FOREIGN KEY. This ensures a blog post cannot be created without a user to be associated with it. This also means that if a user is deleted and cascading deletions are enabled, all blog posts associated with that user will also be deleted. Normally tough, this is not the case, and a deletion will fail until all blog entries from that account is deleted.
+Note how a foreign key is defined and how it REFERENCES the id column in the account table and does not use its definition as a keyword. So, REFERENCES table(id) is the actual implementation of a FOREIGN KEY. This ensures a blog post cannot be created without a user to be associated with it. This also means that if a user is deleted and cascading deletions are enabled, all blog posts related to that user will also be deleted. Normally tough, this is not the case, and a deletion will fail until all blog entries from that account are deleted.
 
-Now that we are able to create tables, the question arises, what happens if something was done wrong, and the table needs to be altered or deleted? 
+Now that we can create tables, the question arises: what happens if something is done wrong, and the table needs to be altered or deleted? 
 
 \subsection{Altering tables}
-If you wish to alter a table, you can use the ALTER TABLE statement. The following codesnippet shows the available syntax for the alter table operation. The syntax is the same for all database management systems, but the options available might differ. The options available in PostgreSQL are shown in the example.
+If you wish to alter a table, you can use the ALTER TABLE statement. The following code snippet shows the available syntax for the alter table operation. The syntax is the same for all database management systems, but options might differ. The options available in PostgreSQL are shown in the example.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Alter a table
     ALTER TABLE table_name action;
 \end{minted}
 
-As you can see at this point, the alter command does not specify what action to take. The action is specified in the next line, and the available actions are shown in \cref{tab:1.postgresql-alter-table-actions}.
+As you can see, the alter command does not specify what action to take. The action is specified in the next line, and the available actions are shown in \cref{tab:1.postgresql-alter-table-actions}.
 
 \begin{table}[htb]
     \centering
@@ -619,7 +619,7 @@ As you can see at this point, the alter command does not specify what action to 
     \label{tab:1.postgresql-alter-table-actions}
 \end{table}
 
-From this point on, the task comes to find the correct action to take, and the correct syntax to use. The following example shows how to add a column to a table.
+From this point on, the task comes to finding the correct action to take and the correct syntax to use. The following example shows how to add a column to a table.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Add a column to a table
@@ -627,11 +627,11 @@ From this point on, the task comes to find the correct action to take, and the c
     ADD COLUMN column_name datatype column_constraint;
 \end{minted}
 
-For specific examples of how to use ALTER for each action, i recommend visting \url{https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-alter-table/} and read up on the documentation for the database management system you are using. The documentation will show you all the available actions, and how to use them.
+For specific examples of how to use ALTER for each action, I recommend visting \url{https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-alter-table/} and reading up on the documentation for the database management system you are using. The documentation will show you all the available actions and how to use them.
 
 
 \subsection{Deleting tables}
-Compared to altering tables, deleting tables is a more straightforward operation. The following codesnippet shows the available syntax for the delete table operation. The syntax is the same for all database management systems, but the options available might differ. The options available in PostgreSQL are shown in the example.
+Compared to altering tables, deleting tables is a more straightforward operation. The following code snippet shows the available syntax for the delete table operation. The syntax is the same for all database management systems, but options might differ. The options available in PostgreSQL are shown in the example.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Delete a table
@@ -639,20 +639,20 @@ Compared to altering tables, deleting tables is a more straightforward operation
     [CASCADE | RESTRICT];
 \end{minted}
 
-Here the name of the DROP TABLE statement and a table name of your choosing is mandatory, the IF EXISTS clause is optional, and the CASCADE | RESTRICT clause is also optional. The CASCADE | RESTRICT clause is used to specify what to do if the table has dependencies. If the table has dependencies, and CASCADE is specified, the table and all its dependencies will be deleted. If the table has dependencies, and RESTRICT is specified, the table will not be deleted. The following example shows how to delete a table and all of its dependencies.
+Here, the name of the DROP TABLE statement and a table name of your choosing is mandatory, the IF EXISTS clause is optional, and the CASCADE | RESTRICT clause is optional. The CASCADE | RESTRICT clause is used to specify what to do if the table has dependencies. If the table has dependencies, and CASCADE is specified, the table and all its dependencies will be deleted. If the table has dependencies and RESTRICT is specified, the table will not be deleted. The following example shows how to delete a table and its dependencies.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Delete a table and all of its dependencies
     DROP TABLE table_name CASCADE;
 \end{minted}
 
-At this point, you can now create databases, tables, and alter and delete tables. You are now ready to start working with databases. The next section will guide you through the process of inserting data into a table, and how to query the data from the table.
+At this point, you can now create databases, and tables, and alter and delete tables. You are now ready to start working with databases. The following section will guide you through inserting data into a table and how to query the data from the table.
 
 \section{CRUD Operations in Tables}
-CRUD is an acronym for Create, Read, Update, and Delete, and is used to refer to the basic operations of working with data in a database. Creating a databases and tables are relatively simple tasks, but the real complexities of databases come with working with data in tables. This section will introduce you to the basic operations of inserting, reading, updating, and deleting data in tables. We start from the easiest operations, and move to the more complex operations, where retrieval interestingly enough is the most complex operation, due to the sheer amount of options available, and the need to be able to join tables together into coherent information.
+CRUD is an acronym for Create, Read, Update, and Delete and is used to refer to the basic operations of working with data in a database. Creating a databases and tables are a relatively simple task, but the real complexities of databases come with working with data in tables. This section will introduce you to the basic operations of inserting, reading, updating, and deleting data in tables. We start from the most straightforward operations, and move to the more complex operations, where retrieval, interestingly enough is the most complex operation due to the sheer number of options available and the need to be able to combine tables into coherent information.
 
 \subsection{Inserting data in tables}
-The following codesnippet shows the available syntax for the insert operation. The syntax is the same for all database management systems, but the options available might differ. The options available in PostgreSQL are shown in the example below.
+The following code snippet shows the available syntax for the insert operation. The syntax is the same for all database management systems, but options might differ. The options available in PostgreSQL are shown in the example below.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Syntax for inserting data into a table
@@ -660,7 +660,7 @@ The following codesnippet shows the available syntax for the insert operation. T
     VALUES (value1, value2, …);
 \end{minted}
 
-Here it is important to understand that the name of the INSERT INTO statement and a table name of your choosing is mandatory, the column names and the VALUES clause is also mandatory. The column names and the VALUES clause must match, and the order of the column names and the VALUES clause must match. Specifically, this means that in column1, value1 will be inserted. So the person writing the SQL can define what comes first, or if all columns of a table is filled with data. If a column of the table is not specified, the cell for that row inserted will be NULL. The following example shows how to insert data into a table.
+Here, it is essential to understand that the name of the INSERT INTO statement and a table name of your choosing is mandatory, the column names and the VALUES clause are also mandatory. The column names and the VALUES clause must match, and the order of the column names and the VALUES clause must match. Specifically, this means that in column1, value1 will be inserted. So, the person writing the SQL can define what comes first, or if all columns of a table are filled with data. If a column of the table is not specified, the cell for that row inserted will be NULL. The following example shows how to insert data into a table.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Creating a table for the example
@@ -684,7 +684,7 @@ Here it is important to understand that the name of the INSERT INTO statement an
     */
 \end{minted}
 
-The first part of the example creates a sample table. Here we can see the ID to be of type SERIAL, so it is an integer that autoincements. Manufacturer and owner are both VARCHAR(255) and are both required to be filled. The last\_update is a DATE, and is not required to be filled. The second part of the example inserts data into the table. Here we can see that the ID is not specified, and the last\_update is not specified.This means the ID will be auto incremented, and the last\_update will be NULL. The third part of the example uses a new command further explored in a later section, right now, suffice to know, that a SELECT is about reading something from the database, while the star means all columns, and FROM defines from what table this should be read. So, to command shows shows the inserted data. To comment below shows the output of the select statement if run. Here we can see that the ID is 1, the manufacturer is Toyota, the owner is John Doe, and the last\_update is NULL. There is one more option available when inserting bulk data into a database, which the example below shows.
+The first part of the example creates a sample table. Here we can see the ID as SERIAL, so it is an integer that auto-incements. The manufacturer and owner are both VARCHAR(255) and must be filled. The last\_update is a DATE, and is not required to be filled. The second part of the example inserts data into the table. Here, we can see that the ID is not specified, and the last\_update is not specified. This means the ID will be auto-incremented, and the last\_update will be NULL. The third part of the example uses a new command further explored in a later section; right now, suffices to know that a SELECT is about reading something from the database, while the star means all columns, and FROM defines from what table this should be read. So, the command shows shows the inserted data. The comment below shows the output of the select statement if run. Here, we can see that the ID is 1, the manufacturer is Toyota, the owner is John Doe, and the last\_update is NULL. There is one more option available when inserting bulk data into a database, which the example below shows.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Inserting bulk data into the table
@@ -704,10 +704,10 @@ The first part of the example creates a sample table. Here we can see the ID to 
     */
 \end{minted}
 
-In this case we can see that we are saving space by inserting multiple rows in one command. This is a good practice, and should be used when inserting multiple rows, and ensures we only specify the structure of the data once. The next section will guide you through the process of updating data in a table.
+In this case, we are saving space by inserting multiple rows in one command. This type of mass insertion is good practice, and should be used when inserting multiple rows, and ensures we only specify the data structure once. The following section will guide you through updating data in a table.
 
 \subsection{Deleting data in tables}
-Deleting data in a table is a straightforward operation, though it does not come without its dangers. Everyone experienced with databases will at some point have seen an inexperienced novice delete an entire table as the forgot a part of the statement. The following codesnippet shows the available syntax for the delete operation. The syntax is the same for all database management systems, but the options available might differ. The options available in PostgreSQL are shown in the example below.
+Deleting data in a table is a straightforward operation, though it does not come without dangers. Everyone experienced with databases will have seen an inexperienced novice delete an entire table as the forgot a part of the statement. The following code snippet shows the available syntax for the delete operation. The syntax is the same for all database management systems, but options might differ. The options available in PostgreSQL are shown in the example below.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Syntax for deleting data from a table
@@ -715,7 +715,7 @@ Deleting data in a table is a straightforward operation, though it does not come
     WHERE condition;
 \end{minted}
 
-Here it is important to understand that the name of the DELETE FROM statement and a table name of your choosing is mandatory, the WHERE clause is also mandatory. The WHERE clause is used to specify what rows to delete from the table. The following example shows how to delete data from a table.
+Here, it is important to understand that the name of the DELETE FROM statement and a table name of your choosing is mandatory; the WHERE clause is also mandatory. The WHERE clause is used to specify what rows to delete from the table. The following example shows how to delete data from a table.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Deleting data from the table
@@ -732,7 +732,7 @@ Here it is important to understand that the name of the DELETE FROM statement an
     */
 \end{minted}
 
-In this example, we now deleted the first entry of the table. The are multiple dangers with the delete statement, and it is important to be careful when using it. For example, yes, there was only one Toyota in the example above, but what if there were more? Then all of them would be deleted. Therefore, it is important to be as specific about what you want to delete, and the better option above would have to delete by ID, as the ID is unique, as this example shows.
+In this example, we now deleted the first entry of the table. There are multiple dangers with the delete statement, and it is essential to be careful when using it. For example, yes, there was only one Toyota in the example above, but what if there were more? Then, all of them would be deleted. Therefore, it is vital to be as specific about what you want to delete, and the better option above would be to delete by ID, as the ID is unique, as this example shows.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Deleting data from the table
@@ -748,7 +748,7 @@ In this example, we now deleted the first entry of the table. The are multiple d
     */
 \end{minted}
 
-In this example, we now deleted the second entry of the table. the last typical flaw implemented by most, is simply forgetting the WHERE clause, and deleting the entire table. This is a common mistake, and it is important to be careful when using the delete statement, as seen here.
+In this example, we now deleted the second entry of the table. The last typical flaw implemented by most is simply forgetting the WHERE clause and deleting the entire table. This wide ranging deletion is a common mistake, and it is essential to be careful when using the delete statement, as seen here.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Deleting data from the table
@@ -762,10 +762,10 @@ In this example, we now deleted the second entry of the table. the last typical 
     */
 \end{minted}
 
-Remember, deleting data in a database is permanent, and a backup is the only way to recover the data. Databases has no recycle bin, and the data is gone forever. The next section will guide you through the process of updating data in a table.
+Remember, deleting data in a database is permanent, and a backup is the only way to recover the data. Databases have no recycle bin, and the data is gone forever. The following section will guide you through updating data in a table.
 
 \subsection{Updating data in tables}
-Updating data in a table is a straightforward operation, and is used to change the data in a table. The following codesnippet shows the available syntax for the update operation. The syntax is the same for all database management systems, but the options available might differ. The options available in PostgreSQL are shown in the example below.
+Updating data in a table is a straightforward operation and is used to change the data in a table. The following code snippet shows the available syntax for the update operation. The syntax is the same for all database management systems, but options might differ. The options available in PostgreSQL are shown in the example below.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Syntax for updating data in a table
@@ -774,7 +774,7 @@ Updating data in a table is a straightforward operation, and is used to change t
     WHERE condition;
 \end{minted}
 
-Here it is important to understand that the name of the UPDATE statement and a table name of your choosing is mandatory, the SET clause is also mandatory, and the WHERE clause is also mandatory. The SET clause is used to specify what to update in the table, and the WHERE clause is used to specify what rows to update in the table. The following example shows how to update data in a table.
+Here, it is essential to understand that the name of the UPDATE statement and a table name of your choosing is mandatory, the SET clause is also compulsory, and the WHERE clause is also mandatory. The SET clause is used to specify what to update in the table, and the WHERE clause is used to identify what rows to update in the table. The following example shows how to update data in a table.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Updating data in the table
@@ -793,7 +793,7 @@ Here it is important to understand that the name of the UPDATE statement and a t
     */
 \end{minted}
 
-Again here, the best way to update a row is by ID, as the ID is unique, and the best way to be sure you are updating the correct row, but the example works, and the manufacturer Ford now has the owner Jane Doe. Just as with the delete statement, the update statement is permanent, and you have the same problems as with the DELETE statement if you forget where, which will result in the following example.
+Again, here, the best way to update a row is by ID, as the ID is unique, and the best way to be sure you are updating the correct row, but the example works, and the manufacturer Ford now has the owner Jane Doe. Just as with the delete statement, the update statement is permanent, and you have the same problems as with the DELETE statement if you forget where which will result in the following example.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Updating data in the table
@@ -811,10 +811,10 @@ Again here, the best way to update a row is by ID, as the ID is unique, and the 
     */
 \end{minted}
 
-As you can see, all rows in the table now has the owner Jane Doe. The next section will guide you through the process of querying data from a table.
+As you can see, all rows in the table now have the owner, Jane Doe. The following section will guide you through querying data from a table.
 
 \subsection{Querying}
-Querying data from a table is the most complex operation, and is used to retrieve data from a table. The following codesnippet shows the available syntax for the select operation. The syntax is the same for all database management systems, but the options available might differ. The options available in PostgreSQL are shown in the example below.
+Querying data from a table is the most complex operation and is used to retrieve data from a table. The following code snippet shows the available syntax for the select operation. The syntax is the same for all database management systems, but options might differ. The options available in PostgreSQL are shown in the example below.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Syntax for querying data from a table
@@ -823,7 +823,7 @@ Querying data from a table is the most complex operation, and is used to retriev
     WHERE condition;
 \end{minted}
 
-Here it is important to understand that the name of the SELECT statement and the column names and the FROM clause is mandatory, and the WHERE clause is also mandatory. The column names and the FROM clause must match, and the order of the column names and the FROM clause must match. The WHERE clause is used to specify what rows to retrieve from the table. The following example shows how to query data from a table.
+Here, it is essential to understand that the name of the SELECT statement, the column names, and the FROM clause is mandatory, and the WHERE clause is also compulsory. The column names and the FROM clause must match, and the order of the column names and the FROM clause must match. The WHERE clause is used to specify what rows to retrieve from the table. The following example shows how to query data from a table.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Querying data from the table
@@ -837,7 +837,7 @@ Here it is important to understand that the name of the SELECT statement and the
     */
 \end{minted}
 
-In this example, we are retrieving all rows from the table. The star means all columns, and the FROM defines from what table this should be read. The next example shows how to query specific columns from a table.
+In this example, we are retrieving all rows from the table. The star means all columns and the FROM defines from what table this should be read. The following example shows how to query specific columns from a table.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Querying specific columns from the table
@@ -851,7 +851,7 @@ In this example, we are retrieving all rows from the table. The star means all c
     */
 \end{minted}
 
-In this example, we are retrieving the manufacturer and owner columns from the table. The next example shows how to query specific rows from a table.
+In this example, we retrieve the manufacturer and owner columns from the table. The following example shows how to query specific rows from a table.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Querying specific rows from the table
@@ -864,7 +864,7 @@ In this example, we are retrieving the manufacturer and owner columns from the t
     */
 \end{minted}
 
-In this example, we are retrieving all rows from the table where the manufacturer is Toyota. The next example shows how to query specific rows from a table, and order the results. For this example, we are going to add a few more rows to the table.
+In this example, we are retrieving all rows from the table where the manufacturer is Toyota. The following example shows how to query specific rows from a table and order the results. For this example, we will add a few more rows to the table.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Inserting bulk data into the table
@@ -888,10 +888,10 @@ In this example, we are retrieving all rows from the table where the manufacture
     */
 \end{minted}
 
-In this example, we are retrieving all rows from the table where the manufacturer is Toyota, and ordering the results by the owner. The next example shows how to query specific rows from a table, and limit the results.
+In this example, we are retrieving all rows from the table where the manufacturer is Toyota, and ordering the results based on the owner. The following example shows how to query specific rows from a table and limit the results.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
-    -- Querying specific rows from the table, and limit the results
+    -- Querying specific rows from the table, and limiting the results
     SELECT * FROM cars
     WHERE manufacturer = 'Toyota'
     ORDER BY owner
@@ -903,10 +903,10 @@ In this example, we are retrieving all rows from the table where the manufacture
     */
 \end{minted}
 
-In this example, we are retrieving all rows from the table where the manufacturer is Toyota, and ordering the results by the owner, and limiting the results to 1. The next example shows how to query specific rows from a table, and group the results.
+In this example, we are retrieving all rows from the table where the manufacturer is Toyota, ordering the results by the owner, and limiting the results to 1. The following example shows how to query specific rows from a table and group the results.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
-    -- Querying specific rows from the table, and group the results
+    -- Querying specific rows from the table, and grouping the results
     SELECT manufacturer, COUNT(*) FROM cars
     GROUP BY manufacturer;
 
@@ -918,7 +918,7 @@ In this example, we are retrieving all rows from the table where the manufacture
     */
 \end{minted}
 
-In this example, we are retrieving the manufacturer and the count of rows from the table, and grouping the results by the manufacturer. The next section expands on querying for data, by allowing you to join multiple tables together.
+In this example, we are retrieving the manufacturer and the count of rows from the table and grouping the results by the manufacturer. The following section expands on querying for data by allowing you to join multiple tables together.
 
 \subsection{Basic Joins}
 For this section to make sense, as a reader, you first need to understand the different types of joins a database management system can perform. The different types of joins are shown in \cref{tab:1.postgresql-joins}.
@@ -939,7 +939,7 @@ For this section to make sense, as a reader, you first need to understand the di
     \label{tab:1.postgresql-joins}
 \end{table}
 
-In this section several examples will be shown, but will all work from the following example. The example is a simple example of a database with two tables, that are designed to showcase the different types of joins. We are diverging from the cars example here, as it is not a good example to showcase the different types of joins. The example below shows how to create two tables, and insert data into the tables.
+In this section, several examples will be shown, but they will all work from the following example. The example is a simple example of a database with two tables designed to showcase the different types of joins. We are diverging from the cars example here, as it is not a good example to showcase the different types of joins. The example below shows how to create two tables and insert data into them.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Create table one
@@ -986,7 +986,7 @@ In this section several examples will be shown, but will all work from the follo
 The example data is not a good way of creating a database, but an extreme example of how to exemplify the different join types, and should not be used for any other purpose.
 
 \subsubsection{Inner Joins}
-Joins allows us to take the content from two tables and combine them into one coherent result. To support the table above, lets show a few visual examples of how the different joins work. The following examples shows how the different joins work.
+Joins allow us to take the content from two tables and combine them into one coherent result. To support the table above, let us show a few visual examples of how the different joins work. The following examples show how the different joins work.
 
 \begin{figure}[H]
     \centering
@@ -995,7 +995,7 @@ Joins allows us to take the content from two tables and combine them into one co
     \label{fig:1.innerjoin}
 \end{figure}
 
-As \cref{fig:1.innerjoin} shows, an inner join only returns the overlapping orange area, and leaves out data not intersecting in both tables. There are implicit and explicit joins in SQL, and the example below shows how to perform an explicit inner join.
+As \cref{fig:1.innerjoin} shows, an inner join only returns the overlapping orange area and leaves out data not intersecting in both tables. There are implicit and explicit joins in SQL, and the example below shows how to perform an explicit inner join.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Querying specific rows from the table, and join 
@@ -1017,7 +1017,7 @@ As \cref{fig:1.innerjoin} shows, an inner join only returns the overlapping oran
     WHERE table_one.num = table_two.num;
 \end{minted}
 
-Here the significance is that all rows that had intersecting data in both tables are returned, and the rest is left out, which leaves only two columns in the result. The next example shows how to perform a left join.
+The significance is that all rows with intersecting data in both tables are returned, and the rest is left out, leaving only two columns in the result. The following example shows how to perform a left join.
 
 \subsubsection{Left and Right Joins}
 
@@ -1028,7 +1028,7 @@ Here the significance is that all rows that had intersecting data in both tables
     \label{fig:1.leftjoin}
 \end{figure}
 
-Here \cref{fig:1.leftjoin} shows a left join, and the entire yellow area is returned, joined with the overlapping part from the B table. The next example shows how to perform a left join.
+Here \cref{fig:1.leftjoin} shows a left join, and the entire yellow area is returned, joined with the overlapping part from the B table. The following example shows how to perform a left join.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Querying specific rows from the table, and join 
@@ -1045,7 +1045,7 @@ Here \cref{fig:1.leftjoin} shows a left join, and the entire yellow area is retu
     */
 \end{minted}
 
-Again, here all the rows from the A side is kept, while the B side is only kept if it intersects with the A side. Notice the 3rd entry has a null value, as no data was found in table two. The next example shows how to perform a right join.
+Again, here all the rows from the A side is kept, while the B side is only kept if it intersects with the A side. Notice the 3rd entry has a null value, as no data was found in the second table. The following example shows how to perform a right join.
 
 
 \begin{figure}[H]
@@ -1055,7 +1055,7 @@ Again, here all the rows from the A side is kept, while the B side is only kept 
     \label{fig:1.rightjoin}
 \end{figure}
 
-Here \cref{fig:1.rightjoin} shows a right join, and the entire yellow area is returned, joined with the overlapping part from the A table. Here the exact same occurs as with the left join, but the roles are reversed. Lets see how a right join works.
+Here \cref{fig:1.rightjoin} shows a right join, and the entire yellow area is returned, joined with the overlapping part from the A table. The same occurs here with the left join, but the roles are reversed. Lets see how a right join works.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Querying specific rows from the table, and join 
@@ -1072,18 +1072,18 @@ Here \cref{fig:1.rightjoin} shows a right join, and the entire yellow area is re
     */
 \end{minted}
 
-And as predicted, the result is the same, but the roles are reversed. At this point, we see both NUM and NAME are null for the third entry as no overlapping data was found in table one. The last example shows how to perform a full join.
+As predicted, the result is the same, but the roles are reversed. At this point, we see both NUM and NAME are null for the third entry, as no overlapping data was found in table one. The last example shows how to perform a full join.
 
 \subsubsection{Full Joins and full outer joins}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{content/1-relational-databases/figures/joins/fulljoin.png}
-    \caption{A full join; everything and intersections are returned, but it also keeps non intersecting data}
+    \caption{A full join; everything and intersections are returned, but it also keeps nonintersecting data}
     \label{fig:1.fulljoin}
 \end{figure}
 
-Here \cref{fig:1.fulljoin} shows a full join, and everything and intersections are returned, but it also keeps non intersecting data. The next example shows how to perform a full join.
+Here \cref{fig:1.fulljoin} shows a full join, and everything and intersections are returned, but it also keeps nonintersecting data. The following example shows how to perform a full join.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Querying specific rows from the table, and join 
@@ -1101,7 +1101,7 @@ Here \cref{fig:1.fulljoin} shows a full join, and everything and intersections a
     */
 \end{minted}
 
-Lastly, a full outer join can be performed, where in \cref{fig:1.fulljoin}, it would only take the A and the B side, but leave out all intersections. Here is a code example of how to perform a full outer join.
+Lastly, a full outer join can be performed, where in \cref{fig:1.fulljoin}, it would only take the A and the B side but leave out all intersections. Here is a code example of how to perform a full outer join.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Querying specific rows from the table, and join 
@@ -1119,7 +1119,7 @@ Lastly, a full outer join can be performed, where in \cref{fig:1.fulljoin}, it w
 
 \subsection{Practical joins}
 
-The next example shows how to query specific rows from a table, and join the results from another table. We are going to create the entire example from scratch, so you can see how referential integrity works with the foreign key. In this example, users from the account table can own cars from the cars table.
+The following example shows how to query specific rows from a table and join the results from another table. We will create the entire example from scratch so you can see how referential integrity works with the foreign key. In this example, users from the account table can own cars from the cars table.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Create account table
@@ -1154,7 +1154,8 @@ The next example shows how to query specific rows from a table, and join the res
            ('Ford', 3),
            ('Chevrolet', 2);
 
-    -- Querying specific rows from the cars table, and join the results from the account table
+    -- Querying specific rows from the cars table, and join the 
+    -- results from the account table
     SELECT cars.id, cars.manufacturer, account.username
     FROM cars
     JOIN account ON cars.owner = account.id;
@@ -1171,12 +1172,29 @@ The next example shows how to query specific rows from a table, and join the res
 \end{minted}
 
 
-\subsection{Nested Queries}
+\subsection{Nested Queries and Subqueries}
+Nested queries, also called subqueries, are concepts that allow you to use the result of one query as the input for another query. This combination is a powerful concept and allow you to perform complex operations in a single query. The following example shows how to use a nested query.
+
+\begin{minted}[fontsize=\footnotesize]{postgresql}
+    -- Querying specific rows from the table, and use the 
+    -- result as input for another query
+    SELECT * FROM cars
+    WHERE owner IN (SELECT id FROM account WHERE username = 'John Doe');
+
+    /* table output
+    id | manufacturer | owner    | last_update
+    1  | Toyota       | 1        | NULL
+    5  | Ford         | 3        | NULL
+    */
+\end{minted}
+
+The above example shows how to use the result of the nested query as input for another query. The nested query is used to retrieve the ID of the user John Doe, and the result is used as input for the outer query. The outer query retrieves all cars owned by the user John Doe. Mind you, the above example would be better served with a join, but the example is used to show the concept of nested queries.
+Why would one use a nested query? Nested queries allow for complex filtering criteria. You can use the results of one query to filter the results of another, enabling more granular control over data retrieval. This type of retrieval is particularly useful when applying multiple conditions or filters to your data. Also, nested queries can be used for data aggregation purposes, such as computing summary statistics or performing calculations on subsets of data. By nesting queries, you can calculate intermediate results before presenting the final result, providing a way to derive insights from your data. Also, a good use case for nested queries is correlating multiple datasets.
 
 % ******************************* Chapter: ER, EER Modeling and Database Design ****************************
 \chapter{ER, EER Modeling and Database Design}
 \label{chap:relational:eer-modeling-and-database-design}
-This chapter teaches basic ER and ER modelling, and how to design a database from an ER model.
+This chapter teaches basic ER and ER modeling, and how to design a database from an ER model.
 
 \section{The purpose of ER and EER modeling}
 \section{Diagram Elements}

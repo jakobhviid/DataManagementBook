@@ -70,5 +70,11 @@
         "temporalgranularity",
         "transcritical",
         "uuid"
+    ],
+    "grammarly.selectors": [
+        {
+            "language": "latex",
+            "scheme": "file"
+        }
     ]
 }
