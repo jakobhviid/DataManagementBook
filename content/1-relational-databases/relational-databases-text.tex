@@ -189,7 +189,7 @@ When asked for a password, use the password you want to use for the postgres use
 \end{figure}
 
 
-This is not the password you will use to connect to the database server, but the password you will use to manage the database server. This password is not used in this book, but it is good practice to set it to something you can remember.
+This is not the password you will use to connect to the database server but the password you will use to manage the database server. This password is not used in this book, but it is good practice to set it to something you can remember.
 
 \subsection{Mac Specific Instructions}
 Installation of PostgreSQL on a Mac is done through the terminal. You can pick any way to do this, but we are going to use the homebrew (https://brew.sh) solution. Open the terminal, and run the following command to install homebrew: 
@@ -253,11 +253,11 @@ Remember to also install pgAdmin using homebrew, by running the following comman
     brew install pgadmin4
 \end{minted}
 
-At the first run of pgadmin a password needs to be set. Remember it, as you need it every time you used pgadmin. Be aware that this password is not the same as the password for the database server instance, and the password for the postgres user.
+At the first run of pgAdmin a password needs to be set. Remember it, as you need it every time you used pgAdmin. Be aware that this password is not the same as the password for the database server instance, and the password for the postgres user.
 
 
 \subsection{Linux Specific Instructions}
-With linux, you are mostly on your own, but generally, most linux distributions have a package manager that you can use to install PostgreSQL. The package manager is different from distribution to distribution, but the most common ones are apt, yum, and dnf. To install PostgreSQL on Ubuntu, you can run the following command in the terminal:
+With Linux, you are mostly on your own, but generally, most Linux distributions have a package manager that you can use to install PostgreSQL. The package manager is different from distribution to distribution, but the most common ones are apt, yum, and dnf. To install PostgreSQL on Ubuntu, you can run the following command in the terminal:
 
 \begin{minted}[fontsize=\footnotesize]{bash}
     sudo apt-get install postgresql
@@ -269,7 +269,7 @@ After PostgreSQL is installed, you can start the server by running the following
     sudo systemctl start postgresql
 \end{minted}
 
-This will start the PostgreSQL server, and it will start automatically every time you start your computer. If you want to stop the server, you can run the following command in the terminal:
+This command will start the PostgreSQL server and automatically start every time you start your computer. If you want to stop the server, you can run the following command in the terminal:
 
 \begin{minted}[fontsize=\footnotesize]{bash}
     sudo systemctl stop postgresql
@@ -294,7 +294,7 @@ Remember to install pgAdmin too. This can be done using the package manager of y
     sudo apt-get install pgadmin4
 \end{minted}
 
-At the first run of pgadmin a password needs to be set. Remember it, as you need it every time you used pgadmin. Be aware that this password is not the same as the password for the database server instance, and the password for the postgres user.
+At the first run of pgAdmin, a password needs to be set. Remember it, as you need it every time you use pgAdmin. Be aware that this password is not the same as the password for the database server instance, and the password for the postgres user.
 
 \section{Connecting to the database with pgAdmin}
 When you have installed PostgreSQL, you can connect to the database using pgAdmin. pgAdmin is a graphical user interface that allows you to interact with the database. It is a powerful tool that allows you to create, manage, and query databases. This section will guide you through the process of connecting to the database using pgAdmin.
@@ -326,8 +326,8 @@ Next, you need to register a server. This is done by right clicking on the "Serv
 %     \label{fig:1.pgadmin3}
 % \end{figure}
 
-Pick a name for the server, and click save. I recommend localhost, as it is the default name, and as it refers to your local computer. This is convention for development machines. 
-Move to the tab "Connection", and fill in the connection information. The hostname is localhost, the username is postgres, and the password is the password you set for the postgres user. The dialog will look like \cref{fig:1.pgadmin4}.
+Pick a name for the server, and click save. I recommend localhost, as it is the default name, and as it refers to your local computer. This reference is a convention for development machines. 
+Move to the tab "Connection" and fill in the connection information. The hostname is localhost, the username is postgres, and the password is the password you set for the postgres user. The dialog will look like \cref{fig:1.pgadmin4}.
 
 \begin{figure}[H]
     \centering
@@ -345,7 +345,7 @@ Move to the tab "Connection", and fill in the connection information. The hostna
 %     \label{fig:1.pgadmin5}
 % \end{figure}
 You should now be connected to the database and see it in the right pane.
-Now you can create a new database. This is done by right clicking on the "Databases" node in the tree view, and selecting "Create" and then "Database...". This will open a dialog where you can fill in the database information. The dialog will look like \cref{fig:1.pgadmin6}.
+Now you can create a new database. This creation is achieved by right-clicking on the "Databases" node in the tree view and selecting "Create" and then "Database...". This action will open a dialog where you can fill in the database information. The dialog will look like \cref{fig:1.pgadmin6}.
 
 \begin{figure}[H]
     \centering
@@ -363,7 +363,7 @@ Pick a name for the database, and click save. The dialog will look like \cref{fi
     \label{fig:1.pgadmin7}
 \end{figure}
 
-Now you have created a database, and you can start working with it. You can start by creating tables, and inserting data into the tables. This is done by right clicking on the database, and selecting "Query Tool". This will open a dialog where you can write your code, and execute it. The dialog will look like \cref{fig:1.pgadmin8}.
+Now you have created a database, and you can start working with it. You can begin by creating tables and inserting data into them. This creation is achieved by right-clicking on the database and selecting "Query Tool." This will open a dialog where you can write your code, and execute it. The dialog will look like \cref{fig:1.pgadmin8}.
 
 \begin{figure}[H]
     \centering
@@ -372,7 +372,7 @@ Now you have created a database, and you can start working with it. You can star
     \label{fig:1.pgadmin8}
 \end{figure}
 
-Write your code, and execute it. The dialog will look like \cref{fig:1.pgadmin9}. You are now ready for coding.
+Write your code and execute it. The dialog will look like \cref{fig:1.pgadmin9}. You are now ready for coding.
 
 \begin{figure}[H]
     \centering
@@ -381,19 +381,19 @@ Write your code, and execute it. The dialog will look like \cref{fig:1.pgadmin9}
     \label{fig:1.pgadmin9}
 \end{figure}
 
-Now that your machine is ready, and you have connected to the database, you are ready to start working with databases. The next chapter will guide you through the process of creating a database, and managing tables, as well as how to query the database.
+Now that your machine is connected to the database, you can start working with it. The next chapter will guide you through creating a database, managing tables, and querying the database.
 
 
 % ******************************* Chapter: Relational Database Basics ****************************
 \chapter{Relational Database Basics}
 \label{chap:relational:relational-database-basics}
-This chapter contains the basic building blocks to get started with basic relational databases.
-It will explain the basic concepts of databases, and how to create, manage, and query a database.
+This chapter contains the basic building blocks for basic relational databases.
+It will explain the basic concepts of databases and how to create, manage, and query a database.
 
 \section{Creating your first database}
 Creating a database is the first step in working with databases. This section will guide you through the process of creating a database. 
 
-The following codesnippet shows the available syntax for the create database operation. The syntax is the same for all database management systems, but the options available might differ. The options available in PostgreSQL are shown in the example.
+The following code snippet shows the available syntax for the create database operation. The syntax is the same for all database management systems, but options might differ. The options available in PostgreSQL are shown in the example.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Creating a database with full syntax
@@ -410,14 +410,14 @@ The following codesnippet shows the available syntax for the create database ope
         [IS_TEMPLATE = true | false ]
 \end{minted}
 
-The key element to understand here is that the name of the CREATE DATABASE statement and a database name of your choosing is mandatory, the WITH clause and everything after it is optional. If no parameters are set, the database will be created with default settings. Therefore, the simplest way to create a database is to run the following command:
+The key element to understand here is that the name of the CREATE DATABASE statement and a database name of your choosing are mandatory; the WITH clause and everything after it are optional. The database will be created with default settings if no parameters are set. Therefore, the simplest way to create a database is to run the following command:
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Creating an ACME database with minimal syntax
     CREATE DATABASE Acme;
 \end{minted}
 
-Note that both examples you have seen until now, are also using comments. A double dash "--" creates a one-line comment, and a slash-star "/*" creates a multi-line comment. Comments are not executed, and are only there to help you understand the code. It does, however, make the code more readable and understandable, and is therefore a good practice to use comments.
+Note that both examples you have seen until now also use comments. A double dash "--" creates a one-line comment, and a slash-star "/*" creates a multi-line comment. Comments are not executed and are only there to help you understand the code. However, it makes the code more readable and understandable, and it is an excellent practice to use comments.
 
 If you wish to create a database with specific settings, you can use the WITH clause. The following example shows how to create a database with specific settings:
 
@@ -431,14 +431,14 @@ If you wish to create a database with specific settings, you can use the WITH cl
 \end{minted}
 
 \subsection{Altering and deleting databases}
-If you wish an already existing database settings can be altered. The following example shows how to alter a database, and disable index scans (which is not recommended):
+If you wish, an already existing database's settings can be altered. The following example shows how to alter a database and turn off index scans (which is not recommended):
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Alter Database Acme to disable index scans
     ALTER DATABASE Acme SET enable_indexscan TO off;
 \end{minted}
 
-The last missing component is how to delete a database. The following example shows how to delete a database. Beware that this is a permanent operation, and that all data in the database will be lost with no way to recover the data!
+The last missing component is how to delete a database. The following example shows how to delete a database. Beware that this is a permanent operation and that all data in the database will be lost, and there is no way to recover the data!
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Delete a table
@@ -446,7 +446,7 @@ The last missing component is how to delete a database. The following example sh
 \end{minted}
 
 \subsection{Switch databases}
-It is also possible to switch between databases within the same script on most database management systems. Inside the script, one can freely change databases and run queries on different databases. The following example shows how to switch databases in in Microsoft SQL:
+Switching between databases within the same script on most database management systems is also possible. Inside the script, one can freely change databases and run queries on different databases. The following example shows how to switch databases in Microsoft SQL:
 
 \begin{minted}[fontsize=\footnotesize]{sql}
     /* Change to database_name
@@ -454,7 +454,7 @@ It is also possible to switch between databases within the same script on most d
     USE database_name;
 \end{minted}
 
-However, this does not work with PostgreSQL. PostgreSQL is implemented differently, and requires that you actively with your graphical user interface, or with the command line, switch to the database you want to work with. The following example shows how to switch databases in PostgreSQL from the command line using psql:
+However, this does not work with PostgreSQL. PostgreSQL is implemented differently and requires that you actively, with your graphical user interface or with the command line, switch to the database you want to work with. The following example shows how to switch databases in PostgreSQL from the command line using psql:
 
 \begin{minted}[fontsize=\footnotesize]{psql}
     -- Change to database_name from psql command line
@@ -462,7 +462,7 @@ However, this does not work with PostgreSQL. PostgreSQL is implemented different
 \end{minted}
 
 \section{Datatypes in Databases}
-When creating a table, you need to specify the data type for each column. Therefore, this section clarifies what datatypes are, and how they should be used, as well as some best practices. The data type specifies what type of data the column can hold. While databases support different datatypes, there are several common types that works between DBMS implementations. Table \ref{tab:1.postgresql-datatypes} shows the most commonly used data types in PostgreSQL.
+When creating a table, you need to specify the data type for each column. Therefore, this section clarifies what datatypes are, how they should be used, and some best practices. The data type specifies what type of data the column can hold. While databases support different datatypes, several common types work between DBMS implementations. Table \ref{tab:1.postgresql-datatypes} shows PostgreSQL's most commonly used data types.
 
 \begin{table}[htb]
     \centering
@@ -495,17 +495,17 @@ When creating a table, you need to specify the data type for each column. Theref
     \label{tab:1.postgresql-datatypes}
 \end{table}
 
-The datatypes are just some of the available types, and i recommend you read up on the documentation for the database management system you are using. The documentation will show you all the available datatypes, and how to use them.
-You should get familiar with a few of the datatypes as they will be used the most often, and it is important you understand how they are used, and how they differ from each other. Examples of these datatypes are mainly within three areas: text, numbers, and dates.
+The datatypes are just some of the available types, and I recommend you read up on the documentation for the database management system you are using. The documentation will show you all the available data types and how to use them.
+You should get familiar with a few data types as they will be used most often, and you must understand how they are used and how they differ. Examples of these datatypes are mainly within three areas: text, numbers, and dates.
 
-Within the text area, you have the CHAR(n), VARCHAR(n), and TEXT datatypes. The CHAR(n) datatype is a fixed-length character string, and the VARCHAR(n) datatype is a variable-length character string. The TEXT datatype is a variable-length character string, and is used for large amounts of text. The difference between CHAR(n) and VARCHAR(n) is that CHAR(n) will always be n characters long, and will be padded with spaces if the text is shorter than n characters. VARCHAR(n) will only be as long as the text, and will not be padded with spaces. The TEXT datatype is used for large amounts of text, and is the most flexible of the three. However, my recommendation when learning databases is to use the VARCHAR(n) datatype, as it is flexible, and supports most scenarios. So for now, think of text as VARCHAR(n). Once you understand databases better, you will understand when to use the other datatypes.
+You have the CHAR(n), VARCHAR(n), and TEXT datatypes within the text area. The CHAR(n) datatype is a fixed-length character string, and the VARCHAR(n) is a variable-length character string. The TEXT datatype is a variable-length character string used for large amounts of text. The difference between CHAR(n) and VARCHAR(n) is that CHAR(n) will always be n characters long and will be padded with spaces if the text is shorter than n characters. VARCHAR(n) will only be as long as the text and will not be padded with spaces. The TEXT datatype is used for large amounts of text and is the most flexible of the three. However, when learning databases, I recommend using the VARCHAR(n) datatype, which is flexible and supports most scenarios. So, for now, think of text as VARCHAR(n). Once you understand databases better, you will understand when to use the other datatypes.
 
-The next datatype area to get familiar with is the numbers area. The INTEGER and BIGINT datatypes are used for whole numbers, and the DECIMAL(precision, scale) and NUMERIC(precision, scale) datatypes are used for decimal numbers. The difference between INTEGER and BIGINT is the size of the number they can hold. INTEGER can hold numbers from -2147483648 to 2147483647, and BIGINT can hold numbers from -9223372036854775808 to 9223372036854775807. The DECIMAL(precision, scale) and NUMERIC(precision, scale) datatypes are used for decimal numbers, and the difference between them is that DECIMAL is the same as NUMERIC, but the implementation can differ between database management systems. The precision is the total number of digits, and the scale is the number of digits to the right of the decimal point. So DECIMAL(5,2) can hold numbers from -999.99 to 999.99. My recommendation is to use INTEGER for whole numbers, and DECIMAL(precision, scale) for decimal numbers, and leave other options for for when those does not satisfy the requirements.
+The next datatype area to get familiar with is the numbers area. The INTEGER and BIGINT datatypes are used for whole numbers, and the DECIMAL(precision, scale) and NUMERIC(precision, scale) are used for decimal numbers. The difference between INTEGER and BIGINT is the size of the number they can hold. INTEGER can have numbers from -2147483648 to 2147483647, and BIGINT can contain numbers from -9223372036854775808 to 9223372036854775807. The DECIMAL(precision, scale) and NUMERIC(precision, scale) datatypes are used for decimal numbers, and the difference between them is that DECIMAL is the same as NUMERIC. Still, the implementation can differ between database management systems. The precision is the total number of digits, and the scale is the number of digits to the right of the decimal point. So DECIMAL(5,2) can hold numbers from -999.99 to 999.99. I recommend using INTEGER for whole numbers and DECIMAL(precision, scale) for decimal numbers and leaving other options for when those do not satisfy the requirements.
 
-Lastly, the dates area is the last area to get familiar with. The DATE datatype is used for calendar dates (does not contain the concept of hours, minutes and seconds), and the TIME datatype is used for time of day (does not contain the concept of a date). The TIMESTAMP datatype is used for date and time, so it combines the two previous concepts, and the TIMESTAMPTZ datatype is used for date and time with time zone. The INTERVAL datatype is used to quantify the time between two dates or timestamps. My recommendation is to use the TIMESTAMP datatype for date and time, and the DATE datatype for calendar dates. The other datatypes are used for specific scenarios, and should be used when those scenarios are present.
+Lastly, the dates area is the last area to get familiar with. The DATE datatype is used for calendar dates (does not contain the concept of hours, minutes, and seconds), and the TIME datatype is used for the time of day (does not contain the idea of a date). The TIMESTAMP datatype is used for date and time, so it combines the two previous concepts, and the TIMESTAMPTZ datatype is used for date and time with time zone. The INTERVAL datatype is used to quantify the time between two dates or timestamps. I recommend using the TIMESTAMP datatype for date and time and the DATE datatype for calendar dates. The other data types are used for specific scenarios and should be used when those scenarios are present.
 
 \section{Constraints}
-Another important concept to understand when working with databases is constraints. Without constraints it is impossible to make large scale consistent databases. Constraints are used to enforce rules on the data in the database. This section will guide you through the types of constraints that will be used in later sections. The available types of constrains are shown in \cref{tab:1.postgresql-constraints}. We are going to touch upon four of the above constraint types. Primary Keys, Foreign Keys, Unique, and Not Null. With Primary Keys, we are also going to touch upon the concept of composite keys.
+Another critical concept to understand when working with databases is constraints. Without constraints, it is impossible to make large-scale, consistent databases. Constraints are used to enforce rules on the data in the database. This section will guide you through the types of constraints that will be used in later sections. The available types of constraints are shown in \cref{tab:1.postgresql-constraints}. We will touch upon four of the above constraint types: primary keys, foreign keys, unique keys, and not null keys. With Primary Keys, we are also going to touch upon the concept of composite keys.
 
 \begin{table}[htb]
     \centering
@@ -526,19 +526,19 @@ Another important concept to understand when working with databases is constrain
 \end{table}
 
 \begin{itemize}
-    \item \textbf{Primary Key:} A primary key is a field in a table which uniquely identifies each row/record in that table. It is a unique identifier for the rows in the table. A primary key cannot contain NULL values, and there can only be one primary key in a table. A primary key can be made up of one or more columns. When a primary key is made up of more than one column, it is called a composite key. Make sure your table \textbf{always} has a primary key, as it is the most important constraint in a table. With a primary key, you will often see a datatype of SERIAL, which is a special datatype that is used to auto increment the value of the column. its underlying datatype is INTEGER. This is important to know when making foreign keys to the primary key, as the datatype of the foreign key must match the datatype of the primary key.
-    \item \textbf{Foreign Key:} A foreign key is a field in a table that is a primary key in another table. It can be used to link two tables together. A foreign key can contain NULL values, unless otherwise specified, and there can be multiple foreign keys in a table. A foreign key is used to ensure that the value in the foreign key column exists in the primary key column in the other table. This is used to enforce referential integrity, and is used to link two tables together.
-    \item \textbf{Unique:} A unique constraint is used to ensure that all values in a column are different. It is used to enforce the uniqueness of the values in a column, and is commonly used in conjunction with fields that contain an email address, or a username, to make sure that user does not exist multiple times, but of cause finds it use in other scenarios as well.
-    \item \textbf{Not Null:} A not null constraint is used to ensure that a column cannot have a NULL value. What is a null value? A null value is a value that is not known, not available, or does not exist. It is different from a zero value or a field that contains spaces. A null value is used to represent a missing value, and is used to represent the absence of a value.
+    \item \textbf{Primary Key:} A primary key is a field in a table that uniquely identifies each row/record. It is a unique identifier for the rows in the table. A primary key cannot contain NULL values, and only one primary key can be in a table. A primary key can be made up of one or more columns. When a primary key is made up of more than one column, it is called a composite key. Make sure your table \textbf{always} has a primary key, as it is the most important constraint in a table. With a primary key, you will often see a datatype of SERIAL, a special datatype used to auto-increment the column's value. Its underlying datatype is INTEGER. This detail is important when making foreign keys to the primary key, as the foreign key's data type must match the primary key's datatype.
+    \item \textbf{Foreign Key:} A foreign key is a field in a table that is a primary key in another table. It can be used to link two tables together. Unless otherwise specified, a foreign key can contain NULL values and multiple foreign keys in a table. A foreign key ensures that the value in the foreign key column exists in the primary key column in the other table, which is used to enforce referential integrity and link two tables together.
+    \item \textbf{Unique:} A unique constraint ensures that all values in a column are different. It is used to enforce the uniqueness of the values in a column. It is commonly used in conjunction with fields containing an email address or a username to ensure that the user does not exist multiple times, but of course, it finds use in other scenarios as well.
+    \item \textbf{Not Null:} A not-null constraint ensures a column cannot have a NULL value. What is a null value? A null value is a value that is not known, not available or does not exist. It is different from a zero value or a field that contains spaces. A null value is used to represent a missing value and is used to describe the absence of a value.
 \end{itemize}
 
-Now that you have a basic understanding of constraints, you are ready to start creating tables. The next section will guide you through the process of creating a table, and how to use the constraints you have learned about.
+Now that you have a basic understanding of constraints, you can start creating tables. The following section will guide you through creating a table and how to use the constraints you have learned about.
 
 \section{Working with Tables}
-Now that you have a basic understanding of databases, and how to create a database, datatypes and constraints that you will encounter in this section, you are ready to start creating tables. This section will guide you through the process of creating a table, and how to use the constraints you have learned about.
+Now that you have a basic understanding of databases, how to create a database, and the data types and constraints you will encounter in this section, you are ready to start creating tables. This section will guide you through creating a table using the constraints you have learned about.
 
 \subsection{Creating tables}
-The following codesnippet shows the available syntax for the create table operation. The syntax is the same for all database management systems, but the options available might differ. The options available in PostgreSQL are shown in the example.
+The following code snippet shows the available syntax for the create table operation. The syntax is the same for all database management systems, but options might differ. The options available in PostgreSQL are shown in the example.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Create a table
@@ -550,7 +550,7 @@ The following codesnippet shows the available syntax for the create table operat
     );
 \end{minted}
 
-What is important to understand here is that the name of the CREATE TABLE statement and a table name of your choosing is mandatory, the IF NOT EXISTS clause is optional. Each line under the CREATE statement, defines a column in the table. The column name, the datatype, and the column constraint is mandatory, and the length is optional. The table constraints is also optional, and is used to define constraints on the table as a whole. Moving this example to a concrete implementation of a table, the example below shows how to create a table with the name account, and the columns user\_id, username, and password.
+What is essential to understand here is that the name of the CREATE TABLE statement and a table name of your choosing are mandatory; the IF NOT EXISTS clause is optional. Each line under the CREATE statement defines a column in the table. The column name, the datatype, and the column constraint is mandatory, and the length is optional. The table constraints are also optional and are used to define constraints on the table. Moving this example to a concrete table implementation, the example below shows how to create a table with the name account and the columns user\_id, username, and password.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Create a table
@@ -561,9 +561,9 @@ What is important to understand here is that the name of the CREATE TABLE statem
     );
 \end{minted}
 
-Specifically, from the CREATE statement, we define a table name here. The following line defines a PRIMARY KEY to ensure the line is unique and can be referred to. This line employs the SERIAL datatype to auto-increment the column's value with each new row added to the table. The line below defines a username that can be the maximum length of 50 characters, but defines that it must be defined using NOT NULL, and that no other row in the table can have the same value. The last line represents a password that can be the maximum length of 250 characters but determines it must be set as the NOT NULL constraint is set. For example, never store passwords in plain text, and always use a hashing algorithm to hash the password before storing it in the database.
+Specifically, from the CREATE statement, we define a table name here. The following line represents a PRIMARY KEY to ensure the line is unique and can be referred to. This line employs the SERIAL datatype to auto-increment the column's value with each new row added to the table. The line below defines a username with a maximum length of 50 characters but specifies that it must be NOT NULL and that no other row in the table can have the same value. The last line represents a password that can be the maximum length of 250 characters but determines it must be set as the NOT NULL constraint is set. For example, never store passwords in plain text, and always use a hashing algorithm to hash the password before storing it in the database.
 
-The next example shows how to create a table with a foreign key. The example shows how to create a table with the name blog\_entries, and the columns id, header, body, and created\_by. The created\_by column is a foreign key that references the id column in the account table. 
+The following example shows how to create a table with a foreign key. The example shows how to create a table with the name blog\_entries and the columns id, header, body, and created\_by. The created\_by column is a foreign key referencing the account table's id column. 
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Create account table
@@ -585,19 +585,19 @@ The next example shows how to create a table with a foreign key. The example sho
     );
 \end{minted}
 
-Note how a foreign key is defined and how it REFERENCES the id column in the account table and does not use its definition as a keyword. So, REFERENCES table(id) is the actual implementation of a FOREIGN KEY. This ensures a blog post cannot be created without a user to be associated with it. This also means that if a user is deleted and cascading deletions are enabled, all blog posts related to that user will also be deleted. Normally tough, this is not the case, and a deletion will fail until all blog entries from that account are deleted.
+Note how a foreign key is defined and how it REFERENCES the id column in the account table and does not use its definition as a keyword. So, REFERENCES table(id) is the actual implementation of a FOREIGN KEY. This key ensures a blog post cannot be created without a user to be associated with it. This constraint also means that if a user is deleted and cascading deletions are enabled, all blog posts related to that user will also be deleted. Usually, this is not the case, and a deletion will fail until all blog entries from that account are deleted.
 
 Now that we can create tables, the question arises: what happens if something is done wrong, and the table needs to be altered or deleted? 
 
 \subsection{Altering tables}
-If you wish to alter a table, you can use the ALTER TABLE statement. The following code snippet shows the available syntax for the alter table operation. The syntax is the same for all database management systems, but options might differ. The options available in PostgreSQL are shown in the example.
+If you wish to alter a table, you can use the ALTER TABLE statement. The following code snippet shows the available syntax for the ALTER TABLE operation. The syntax is the same for all database management systems, but options might differ. The options available in PostgreSQL are shown in the example.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Alter a table
     ALTER TABLE table_name action;
 \end{minted}
 
-As you can see, the alter command does not specify what action to take. The action is specified in the next line, and the available actions are shown in \cref{tab:1.postgresql-alter-table-actions}.
+As you can see, the alter command does not specify what action to take. The action is set in the following line, and the available actions are shown in \cref{tab:1.postgresql-alter-table-actions}.
 
 \begin{table}[htb]
     \centering
@@ -619,7 +619,7 @@ As you can see, the alter command does not specify what action to take. The acti
     \label{tab:1.postgresql-alter-table-actions}
 \end{table}
 
-From this point on, the task comes to finding the correct action to take and the correct syntax to use. The following example shows how to add a column to a table.
+From this point on, the task comes to finding the correct action and syntax to use. The following example shows how to add a column to a table.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Add a column to a table
@@ -627,7 +627,7 @@ From this point on, the task comes to finding the correct action to take and the
     ADD COLUMN column_name datatype column_constraint;
 \end{minted}
 
-For specific examples of how to use ALTER for each action, I recommend visting \url{https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-alter-table/} and reading up on the documentation for the database management system you are using. The documentation will show you all the available actions and how to use them.
+For specific examples of how to use ALTER for each action, I recommend visiting \url{https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-alter-table/} and reading up on the documentation for the database management system you are using. The documentation will show you all the available actions and how to use them.
 
 
 \subsection{Deleting tables}
@@ -646,10 +646,10 @@ Here, the name of the DROP TABLE statement and a table name of your choosing is 
     DROP TABLE table_name CASCADE;
 \end{minted}
 
-At this point, you can now create databases, and tables, and alter and delete tables. You are now ready to start working with databases. The following section will guide you through inserting data into a table and how to query the data from the table.
+Now, you can create databases and tables and alter and delete tables. You are now ready to start working with databases. The following section will guide you through inserting data into a table and how to query the data from the table.
 
 \section{CRUD Operations in Tables}
-CRUD is an acronym for Create, Read, Update, and Delete and is used to refer to the basic operations of working with data in a database. Creating a databases and tables are a relatively simple task, but the real complexities of databases come with working with data in tables. This section will introduce you to the basic operations of inserting, reading, updating, and deleting data in tables. We start from the most straightforward operations, and move to the more complex operations, where retrieval, interestingly enough is the most complex operation due to the sheer number of options available and the need to be able to combine tables into coherent information.
+CRUD is an acronym for Create, Read, Update, and Delete and is used to refer to the basic operations of working with data in a database. Creating databases and tables is a relatively simple task, but the real complexities of databases come with working with data in tables. This section will introduce you to the basic operations of inserting, reading, updating, and deleting data in tables. We start from the most straightforward operations and move to the more complex operations, where retrieval, interestingly enough, is the most difficult operation due to the sheer number of options available and the need to combine tables into coherent information.
 
 \subsection{Inserting data in tables}
 The following code snippet shows the available syntax for the insert operation. The syntax is the same for all database management systems, but options might differ. The options available in PostgreSQL are shown in the example below.
@@ -660,7 +660,7 @@ The following code snippet shows the available syntax for the insert operation. 
     VALUES (value1, value2, …);
 \end{minted}
 
-Here, it is essential to understand that the name of the INSERT INTO statement and a table name of your choosing is mandatory, the column names and the VALUES clause are also mandatory. The column names and the VALUES clause must match, and the order of the column names and the VALUES clause must match. Specifically, this means that in column1, value1 will be inserted. So, the person writing the SQL can define what comes first, or if all columns of a table are filled with data. If a column of the table is not specified, the cell for that row inserted will be NULL. The following example shows how to insert data into a table.
+Here, it is essential to understand that the name of the INSERT INTO statement and a table name of your choosing are mandatory, as well as the column names and the VALUES clause. The column names and the VALUES clause must match, and the order of the column names and the VALUES clause must match. Specifically, this means that in column1, value1 will be inserted. So, the person writing the SQL can define what comes first or if all table columns are filled with data. If a column of the table is not specified, the cell for that row inserted will be NULL. The following example shows how to insert data into a table.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Creating a table for the example
@@ -684,7 +684,7 @@ Here, it is essential to understand that the name of the INSERT INTO statement a
     */
 \end{minted}
 
-The first part of the example creates a sample table. Here we can see the ID as SERIAL, so it is an integer that auto-incements. The manufacturer and owner are both VARCHAR(255) and must be filled. The last\_update is a DATE, and is not required to be filled. The second part of the example inserts data into the table. Here, we can see that the ID is not specified, and the last\_update is not specified. This means the ID will be auto-incremented, and the last\_update will be NULL. The third part of the example uses a new command further explored in a later section; right now, suffices to know that a SELECT is about reading something from the database, while the star means all columns, and FROM defines from what table this should be read. So, the command shows shows the inserted data. The comment below shows the output of the select statement if run. Here, we can see that the ID is 1, the manufacturer is Toyota, the owner is John Doe, and the last\_update is NULL. There is one more option available when inserting bulk data into a database, which the example below shows.
+The first part of the example creates a sample table. Here, we can see the ID as SERIAL, an integer that auto-increments. The manufacturer and owner are both VARCHAR(255) and must be filled. The last\_update is a DATE, and is not required to be filled. The second part of the example inserts data into the table. Here, we can see that the ID is not specified, and the last\_update is not specified. This means the ID will be auto-incremented, and the last\_update will be NULL. The third part of the example uses a new command further explored in a later section; right now, it suffices to know that a SELECT is about reading something from the database, while the star means all columns, and FROM defines from what table this should be read. So, the command shows shows the inserted data. The comment below shows the output of the select statement if run. Here, we can see that the ID is 1, the manufacturer is Toyota, the owner is John Doe, and the last\_update is NULL. One more option is available when inserting bulk data into a database, which the example below shows.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Inserting bulk data into the table
@@ -704,10 +704,10 @@ The first part of the example creates a sample table. Here we can see the ID as 
     */
 \end{minted}
 
-In this case, we are saving space by inserting multiple rows in one command. This type of mass insertion is good practice, and should be used when inserting multiple rows, and ensures we only specify the data structure once. The following section will guide you through updating data in a table.
+In this case, we save space by inserting multiple rows in one command. This type of mass insertion is good practice and should be used when inserting multiple rows, and it ensures we only specify the data structure once. The following section will guide you through updating data in a table.
 
 \subsection{Deleting data in tables}
-Deleting data in a table is a straightforward operation, though it does not come without dangers. Everyone experienced with databases will have seen an inexperienced novice delete an entire table as the forgot a part of the statement. The following code snippet shows the available syntax for the delete operation. The syntax is the same for all database management systems, but options might differ. The options available in PostgreSQL are shown in the example below.
+Deleting data in a table is straightforward, though it does not come without dangers. Everyone experienced with databases will have seen an inexperienced novice delete an entire table as the forgot a part of the statement. The following code snippet shows the available syntax for the delete operation. The syntax is the same for all database management systems, but options might differ. The options available in PostgreSQL are shown in the example below.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Syntax for deleting data from a table
@@ -715,7 +715,7 @@ Deleting data in a table is a straightforward operation, though it does not come
     WHERE condition;
 \end{minted}
 
-Here, it is important to understand that the name of the DELETE FROM statement and a table name of your choosing is mandatory; the WHERE clause is also mandatory. The WHERE clause is used to specify what rows to delete from the table. The following example shows how to delete data from a table.
+Here, it is essential to understand that the name of the DELETE FROM statement and a table name of your choosing are mandatory; the WHERE clause is also compulsory. The WHERE clause is used to specify what rows to delete from the table. The following example shows how to delete data from a table.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Deleting data from the table
@@ -748,7 +748,7 @@ In this example, we now deleted the first entry of the table. There are multiple
     */
 \end{minted}
 
-In this example, we now deleted the second entry of the table. The last typical flaw implemented by most is simply forgetting the WHERE clause and deleting the entire table. This wide ranging deletion is a common mistake, and it is essential to be careful when using the delete statement, as seen here.
+In this example, we now deleted the second entry of the table. The last typical flaw implemented by most is simply forgetting the WHERE clause and deleting the entire table. This type of deletion is a common mistake, and it is essential to be careful when using the delete statement, as seen here.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Deleting data from the table
@@ -765,7 +765,7 @@ In this example, we now deleted the second entry of the table. The last typical 
 Remember, deleting data in a database is permanent, and a backup is the only way to recover the data. Databases have no recycle bin, and the data is gone forever. The following section will guide you through updating data in a table.
 
 \subsection{Updating data in tables}
-Updating data in a table is a straightforward operation and is used to change the data in a table. The following code snippet shows the available syntax for the update operation. The syntax is the same for all database management systems, but options might differ. The options available in PostgreSQL are shown in the example below.
+Updating data in a table is a straightforward operation used to change the data in a table. The following code snippet shows the available syntax for the update operation. The syntax is the same for all database management systems, but options might differ. The options available in PostgreSQL are shown in the example below.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Syntax for updating data in a table
@@ -774,7 +774,7 @@ Updating data in a table is a straightforward operation and is used to change th
     WHERE condition;
 \end{minted}
 
-Here, it is essential to understand that the name of the UPDATE statement and a table name of your choosing is mandatory, the SET clause is also compulsory, and the WHERE clause is also mandatory. The SET clause is used to specify what to update in the table, and the WHERE clause is used to identify what rows to update in the table. The following example shows how to update data in a table.
+Here, it is essential to understand that the name of the UPDATE statement and a table name of your choosing is mandatory, the SET clause is compulsory, and the WHERE clause is required. The SET clause is used to specify what to update in the table, and the WHERE clause is used to identify what rows to update in the table. The following example shows how to update data in a table.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Updating data in the table
@@ -814,7 +814,7 @@ Again, here, the best way to update a row is by ID, as the ID is unique, and the
 As you can see, all rows in the table now have the owner, Jane Doe. The following section will guide you through querying data from a table.
 
 \subsection{Querying}
-Querying data from a table is the most complex operation and is used to retrieve data from a table. The following code snippet shows the available syntax for the select operation. The syntax is the same for all database management systems, but options might differ. The options available in PostgreSQL are shown in the example below.
+Querying data from a table is the most complex operation used to retrieve data from a table. The following code snippet shows the available syntax for the select operation. The syntax is the same for all database management systems, but options might differ. The options available in PostgreSQL are shown in the example below.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Syntax for querying data from a table
@@ -823,7 +823,7 @@ Querying data from a table is the most complex operation and is used to retrieve
     WHERE condition;
 \end{minted}
 
-Here, it is essential to understand that the name of the SELECT statement, the column names, and the FROM clause is mandatory, and the WHERE clause is also compulsory. The column names and the FROM clause must match, and the order of the column names and the FROM clause must match. The WHERE clause is used to specify what rows to retrieve from the table. The following example shows how to query data from a table.
+Here, it is essential to understand that the name of the SELECT statement, the column names, and the FROM clause are mandatory, and the WHERE clause is also compulsory. The column names and the FROM clause must match, and the order of the column names and the FROM clause must match. The WHERE clause is used to specify what rows to retrieve from the table. The following example shows how to query data from a table.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Querying data from the table
@@ -864,7 +864,7 @@ In this example, we retrieve the manufacturer and owner columns from the table. 
     */
 \end{minted}
 
-In this example, we are retrieving all rows from the table where the manufacturer is Toyota. The following example shows how to query specific rows from a table and order the results. For this example, we will add a few more rows to the table.
+In this example, we are retrieving all rows from the table where the manufacturer is Toyota. The following example shows how to query specific rows from a table and order the results. We will add a few more rows to the table for this example.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Inserting bulk data into the table
@@ -888,7 +888,7 @@ In this example, we are retrieving all rows from the table where the manufacture
     */
 \end{minted}
 
-In this example, we are retrieving all rows from the table where the manufacturer is Toyota, and ordering the results based on the owner. The following example shows how to query specific rows from a table and limit the results.
+In this example, we are retrieving all rows from the table where the manufacturer is Toyota and ordering the results based on the owner. The following example shows how to query specific rows from a table and limit the results.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Querying specific rows from the table, and limiting the results
@@ -918,7 +918,7 @@ In this example, we are retrieving all rows from the table where the manufacture
     */
 \end{minted}
 
-In this example, we are retrieving the manufacturer and the count of rows from the table and grouping the results by the manufacturer. The following section expands on querying for data by allowing you to join multiple tables together.
+In this example, we are retrieving the manufacturer and the count of rows from the table and grouping the results by the manufacturer. The following section expands on querying for data by allowing you to join multiple tables.
 
 \subsection{Basic Joins}
 For this section to make sense, as a reader, you first need to understand the different types of joins a database management system can perform. The different types of joins are shown in \cref{tab:1.postgresql-joins}.
@@ -939,7 +939,7 @@ For this section to make sense, as a reader, you first need to understand the di
     \label{tab:1.postgresql-joins}
 \end{table}
 
-In this section, several examples will be shown, but they will all work from the following example. The example is a simple example of a database with two tables designed to showcase the different types of joins. We are diverging from the cars example here, as it is not a good example to showcase the different types of joins. The example below shows how to create two tables and insert data into them.
+This section will show several examples, but they all work from the following code. The example is a simple example of a database with two tables designed to showcase the different types of joins. We are diverging from the cars example here, as it is not a good example to showcase the different types of joins. The example below shows how to create two tables and insert data into them.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Create table one
@@ -986,7 +986,7 @@ In this section, several examples will be shown, but they will all work from the
 The example data is not a good way of creating a database, but an extreme example of how to exemplify the different join types, and should not be used for any other purpose.
 
 \subsubsection{Inner Joins}
-Joins allow us to take the content from two tables and combine them into one coherent result. To support the table above, let us show a few visual examples of how the different joins work. The following examples show how the different joins work.
+Joins allow us to take the content from two tables and combine them into one coherent result. To support the table above, show a few examples of how the different joins work. The following examples show how the different types of joins work.
 
 \begin{figure}[H]
     \centering
@@ -1024,7 +1024,7 @@ The significance is that all rows with intersecting data in both tables are retu
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{content/1-relational-databases/figures/joins/leftjoin.png}
-    \caption{A left join; here the entire yellow area is returned, joined with the overlapping part from the B table}
+    \caption{A left join; here, the entire yellow area is returned, joined with the overlapping part from the B table}
     \label{fig:1.leftjoin}
 \end{figure}
 
@@ -1045,7 +1045,7 @@ Here \cref{fig:1.leftjoin} shows a left join, and the entire yellow area is retu
     */
 \end{minted}
 
-Again, here all the rows from the A side is kept, while the B side is only kept if it intersects with the A side. Notice the 3rd entry has a null value, as no data was found in the second table. The following example shows how to perform a right join.
+Again, all the rows from the A side are kept here, while the B side is only kept if it intersects with the A-side. Notice the 3rd entry has a null value, as no data was found in the second table. The following example shows how to perform a right join.
 
 
 \begin{figure}[H]
@@ -1055,7 +1055,7 @@ Again, here all the rows from the A side is kept, while the B side is only kept 
     \label{fig:1.rightjoin}
 \end{figure}
 
-Here \cref{fig:1.rightjoin} shows a right join, and the entire yellow area is returned, joined with the overlapping part from the A table. The same occurs here with the left join, but the roles are reversed. Lets see how a right join works.
+Here \cref{fig:1.rightjoin} shows a right join, and the entire yellow area is returned, joined with the overlapping part from the A table. The same occurs here with the left join, but the roles are reversed. Let us see how a right join works.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Querying specific rows from the table, and join 
@@ -1171,9 +1171,11 @@ The following example shows how to query specific rows from a table and join the
     */
 \end{minted}
 
+Hopefully, the above example puts the join examples into the usual context from earlier in the book.
+
 
 \subsection{Nested Queries and Subqueries}
-Nested queries, also called subqueries, are concepts that allow you to use the result of one query as the input for another query. This combination is a powerful concept and allow you to perform complex operations in a single query. The following example shows how to use a nested query.
+Nested queries, also called subqueries, allow you to use the result of one query as the input for another query. This combination is a powerful concept and will enable you to perform complex operations in a single query. The following example shows how to use a nested query.
 
 \begin{minted}[fontsize=\footnotesize]{postgresql}
     -- Querying specific rows from the table, and use the 
@@ -1194,7 +1196,7 @@ Why would one use a nested query? Nested queries allow for complex filtering cri
 % ******************************* Chapter: ER, EER Modeling and Database Design ****************************
 \chapter{ER, EER Modeling and Database Design}
 \label{chap:relational:eer-modeling-and-database-design}
-This chapter teaches basic ER and ER modeling, and how to design a database from an ER model.
+This chapter teaches basic ER and ER modeling and how to design a database from an ER model.
 
 \section{The purpose of ER and EER modeling}
 \section{Diagram Elements}
