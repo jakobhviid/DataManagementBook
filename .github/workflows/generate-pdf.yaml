@@ -36,7 +36,7 @@ jobs:
           name: ${{ env.DOCUMENT_NAME }} - PDF
           path: ${{ env.NEW_FILE_NAME }}
       - name: Create ${{ env.DOCUMENT_NAME }} Release if semver tagged
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: ${{ env.NEW_FILE_NAME }}
